@@ -1,0 +1,72 @@
+/**
+ * Created by shaibenvalid on 1/20/17.
+ */
+
+var gameOptions = {
+    gameWidth: 960,    // game width, in pixels
+    gameHeight: 600,   // game height, in pixels
+    tileSize: 60,     // tile size, in pixels
+    colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
+}
+
+var gameLevel = [
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
+]
+
+window.onload = function () {
+
+    //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
+    //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
+    //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
+
+    var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+
+    function preload() {
+
+        game.load.image('logo', 'phaser.png');
+
+        game.load.image('musk', 'assets/mousin.png');
+
+        game.load.image('synagogue', 'assets/synagogue.png');
+
+        game.load.image('church', 'assets/church.png');
+
+        game.load.image('block', 'assets/blue_tile.png');
+    }
+
+
+    function update() {
+
+
+    }
+
+    function create() {
+
+
+        for (var i = 0; i < gameLevel.length; i++) {
+            var row = gameLevel[i];
+            for (var j = 0; j < row.length; j++) {
+                var tileType = row[j];
+                var x = j* gameOptions.tileSize;
+                var y = i* gameOptions.tileSize;
+                var assetName = 'block';
+                if(tileType == 1){
+                    var assetName = 'musk';
+
+                }
+                var sprite = game.add.sprite(x, j, assetName);
+
+            }
+
+        }
+
+    }
+
+};
