@@ -11,19 +11,17 @@ Home.prototype.setAgentNum = function (num) {
     this.agentNum = num;    
 }
 
-Home.prototype.sendWaves(){
+Home.prototype.emit = function(){
     var agent = new Agent(this.x + 30, this.y, 3, 0, 1);
 }
 
 Home.prototype.doTick = function(time) {
     var time = new Date();
-    if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate)) && this.agentNum >0) {
-        this.sendWaves();
+    if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate) && (this.agentNum >0)) {
+        this.emit();
         this.lastWavesSentTime = time;
         this.agentNum --;
     }
 }
 
-function () {
-    
-}
+
