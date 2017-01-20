@@ -2,7 +2,15 @@
  * Created by adi on 1/20/2017.
  */
 var Utils = {
-    locToTile : function(i , j) {
+    tileToLoc : function(i , j) {
+        if (i < 0)
+            i = 0;
+        if (i > gameOptions.gameWidth / gameOptions.tileSize)
+            i = gameOptions.gameWidth;
+        if (j < 0)
+            j = 0;
+        if (j > gameOptions.gameHeight / gameOptions.tileSize)
+            j = gameOptions.gameHeight;
         var x = i* gameOptions.tileSize;
         var y = j* gameOptions.tileSize;
         if (x > gameOptions.gameWidth)
@@ -12,7 +20,7 @@ var Utils = {
         return {'x': x, 'y': y};
     },
 
-    tileToLoc : function (x, y) {
+    locToTile : function (x, y) {
         return {'i' : Math.floor( x / gameOptions.tileSize) , 'j': Math.floor( y / gameOptions.tileSize)};
     }
-} 
+}
