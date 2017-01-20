@@ -4,7 +4,7 @@ Church = function(game, x, y, resource) {
 };
 
 Church.prototype = Object.create(Building.prototype);
-Church.prototype.constructor = Mosque;
+Church.prototype.constructor = Church;
 
 Church.prototype.sendWaves = function() {
 	console.log("CHURCH SENDING WAVES");
