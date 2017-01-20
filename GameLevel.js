@@ -1,3 +1,14 @@
+var TILE_TYPE_TO_OBJECT = {
+    3: "Obsitcle",
+    4: "House",
+    5: "Mosque",
+    6: "Mosque",
+    7: "Mosque",
+    8: "Obsitcle",
+    9: "Obsitcle",
+    10: "Obsitcle"
+};
+
 var data = { "height":8,
     "layers":[
         {
@@ -255,6 +266,10 @@ GameLevel.prototype.getAssetNameById = function (id) {
     }
     var image = specificTile.image;
     return this.getAssetNameNoExtension(image);
+};
+
+GameLevel.prototype.getObjectTypeByTileType = function(tileType) {
+    return TILE_TYPE_TO_OBJECT[tileType];
 };
 
 GameLevel.prototype.getAssetsToLoad = function () {
