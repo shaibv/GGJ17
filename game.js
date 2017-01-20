@@ -9,18 +9,9 @@ var gameOptions = {
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
 }
 
-var gameLevel = [
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
-]
+var gameLevelObj = new GameLevel();
 
-var draggableBankCounter ={};
+var gameLevel = gameLevelObj.getData();
 
 window.onload = function () {
 
@@ -31,6 +22,13 @@ window.onload = function () {
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 
     function preload() {
+
+        //Gameboard related assets
+        var assetsToLoad = gameLevelObj.getAssetsToLoad();
+        for (var i=0; i<assetsToLoad.length; i++){
+            this.game.load.image(assetsToLoad[i], "assets/"+assetsToLoad[i]+".png");
+        }
+
 
         this.game.load.image('logo', 'phaser.png');
         
@@ -68,13 +66,17 @@ window.onload = function () {
             for (var j = 0; j < row.length; j++) {
                 var tileType = row[j];
                 var x = j * gameOptions.tileSize;
-                var y = i * gameOptions.tileSize;
-                var assetName = 'block';
-                if (tileType == 1) {
-                    assetName = 'mosque';
-
+                var y = (i+1) * gameOptions.tileSize;
+                if (tileType == 0) {
+                    var assetName = 'block';
                 }
-                var sprite = this.game.add.sprite(x, y, assetName);
+                else {
+                    tileType = tileType -1;
+                    var assetName = gameLevelObj.getAssetNameById(tileType);
+                    var sprite = this.game.add.sprite(x, y, assetName);
+                    sprite.anchor.set(0,1);
+                }
+
 
             }
         }
