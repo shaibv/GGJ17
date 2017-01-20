@@ -43,12 +43,8 @@ window.onload = function () {
 
 
     function update() {
-<<<<<<< .merge_file_a02564
-
-=======
         
         updateBuldings();
->>>>>>> .merge_file_a07064
         drawBoard(gameLevel);
 
 
@@ -93,14 +89,6 @@ window.onload = function () {
             var building = buildings[i];
             building.doTick(new Date());
         }
-    }
-
-    function tileToLoc(i, j) {
-         return [j* gameOptions.tileSize, i* gameOptions.tileSize]
-    }
-
-    function locToTile(x, y,) {
-        return [x / gameOptions.tileSize, y / gameOptions.tileSize]
     }
 
 };
