@@ -12,7 +12,7 @@ Home.prototype.setAgentNum = function (num) {
 }
 
 Home.prototype.sendWaves(){
-    var agent = new Agent(this.x, this.y, 3);
+    var agent = new Agent(this.x + 30, this.y, 3, 0, 1);
 }
 
 Home.prototype.doTick = function(time) {
