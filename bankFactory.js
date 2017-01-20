@@ -10,7 +10,7 @@ var bankFactory = {
 var draggableBankCounter ={};
 
  function init(game) {
-        this.geme = game;
+        this.game = game;
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
         initDraggable(0, 0, 'synagogue',2);
 
