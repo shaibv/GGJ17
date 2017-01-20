@@ -38,11 +38,11 @@ window.onload = function () {
 
         this.game.load.image('church', 'assets/church.png');
 
-        game.load.image('block', 'assets/blue_tile.png');
+        this.game.load.image('block', 'assets/blue_tile.png');
 
-        game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
+        this.game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
 
-        game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
+        this.game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
     }
 
 
@@ -115,7 +115,7 @@ window.onload = function () {
     }
 
     function updateBuldings() {
-        var buildings = this.mosques.concat(this.churches).concat(synagogues);
+        var buildings = this.mosques.concat(this.churches).concat(this.synagogues);
         for (var i = 0; i < buildings.length; i++) {
             var building = buildings[i];
             building.doTick(new Date());
