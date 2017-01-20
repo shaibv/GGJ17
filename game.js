@@ -76,10 +76,13 @@ window.onload = function () {
         }
     }
 
-    function locToTile() {
+    function tileToLoc(j , i) {
         return [j* gameOptions.tileSize, i* gameOptions.tileSize ]
     }
 
+    function locToTile(x, y) {
+        return[x / gameOptions.tileSize, y / gameOptions.tileSize]
+    }
 
 
     function createBuildings() {
