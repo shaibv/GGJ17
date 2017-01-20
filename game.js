@@ -21,16 +21,6 @@ window.onload = function () {
 
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
-    function preload() {
-
-        //Gameboard related assets
-        var assetsToLoad = gameLevelObj.getAssetsToLoad();
-        for (var i=0; i<assetsToLoad.length; i++){
-            this.game.load.image(assetsToLoad[i], "assets/"+assetsToLoad[i]+".png");
-        }
-    }
-
-
     function update() {
 
         updateBuldings();

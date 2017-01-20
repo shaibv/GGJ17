@@ -13,5 +13,10 @@ var PreLoader = {
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
         
         game.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
+
+        var assetsToLoad = gameLevelObj.getAssetsToLoad();
+        for (var i=0; i<assetsToLoad.length; i++){
+            game.load.image(assetsToLoad[i], "assets/"+assetsToLoad[i]+".png");
+        }
     }
 }
