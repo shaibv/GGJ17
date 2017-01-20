@@ -64,7 +64,13 @@ window.onload = function () {
                             entity = new Mosque(this.game, x, y, assetName);
                             break;
                     }
-                    // this.game.add(entity);
+                    if (entity) {
+                        entity.anchor.set(0,1);
+                        this.game.add.existing(entity);
+                    } else {
+                        var sprite = this.game.add.sprite(x, y, assetName);
+                        sprite.anchor.set(0,1);
+                    }
                 }
 
 
