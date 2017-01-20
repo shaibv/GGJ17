@@ -75,16 +75,6 @@ window.onload = function () {
             building.doTick(new Date());
         }
     }
-
-
-    function locToTile(j , i) {
-        return [j* gameOptions.tileSize, i* gameOptions.tileSize ];
-    }
-
-    function tileToLoc(x, y) {
-        return[x / gameOptions.tileSize, y / gameOptions.tileSize];
-    }
-
-
+    
 
 };
