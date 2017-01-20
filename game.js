@@ -51,8 +51,26 @@ window.onload = function () {
                 else {
                     tileType = tileType -1;
                     var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var sprite = this.game.add.sprite(x, y, assetName);
-                    sprite.anchor.set(0,1);
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
+                    var entity;
+                    switch (tileObject) {
+                        case "Obsticle":
+                            entity = new House(this.game, x, y, assetName); //temp
+                            break;
+                        case "House":
+                            entity = new House(this.game, x, y, assetName);
+                            break;
+                        case "Mosque":
+                            entity = new Mosque(this.game, x, y, assetName);
+                            break;
+                    }
+                    if (entity) {
+                        entity.anchor.set(0,1);
+                        this.game.add.existing(entity);
+                    } else {
+                        var sprite = this.game.add.sprite(x, y, assetName);
+                        sprite.anchor.set(0,1);
+                    }
                 }
 
 

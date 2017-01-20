@@ -1,21 +1,25 @@
 /**
  * Created by adi on 1/20/2017.
  */
-Home = function (game, x, y, resource) {
-    this.prototype = Building(game, x, y, resource)
+House = function (game, x, y, resource) {
+    this.type = "House";
     this.agentNum = 0;
     this.agentRate = 5;
+    Building.call(this, game, x, y, resource);
 }
 
-Home.prototype.setAgentNum = function (num) {   
+House.prototype = Object.create(Building.prototype);
+House.prototype.constructor = House;
+
+House.prototype.setAgentNum = function (num) {   
     this.agentNum = num;    
 }
 
-Home.prototype.emit = function(){
+House.prototype.emit = function(){
     var agent = new Agent(this.x + 30, this.y, 3, 0, 1);
 }
 
-Home.prototype.doTick = function(time) {
+House.prototype.doTick = function(time) {
     var time = new Date();
     if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate) && (this.agentNum >0)) {
         this.emit();
