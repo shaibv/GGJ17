@@ -49,16 +49,21 @@ window.onload = function () {
 
     function create() {
 
+        drawBoard(gameLevel)
 
-        for (var i = 0; i < gameLevel.length; i++) {
-            var row = gameLevel[i];
+
+    }
+
+    function drawBoard(board) {
+        for (var i = 0; i < board.length; i++) {
+            var row = board[i];
             for (var j = 0; j < row.length; j++) {
                 var tileType = row[j];
                 var x = j* gameOptions.tileSize;
                 var y = i* gameOptions.tileSize;
                 var assetName = 'block';
                 if(tileType == 1){
-                     assetName = 'mosque';
+                    assetName = 'mosque';
 
                 }
                 var sprite = game.add.sprite(x, y, assetName);
