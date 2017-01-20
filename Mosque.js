@@ -6,7 +6,7 @@ Mosque = function(game, x, y, resource) {
 Mosque.prototype = Object.create(Building.prototype);
 Mosque.prototype.constructor = Mosque;
 
-Mosque.prototype.sendWaves = function() {
+Mosque.prototype.emit = function() {
 	console.log("MOSQUE SENDING WAVES");
 	var smallWave = this.game.make.sprite(this.width/2, 0, "mosque_wave_small");
 	var bigWave = this.game.make.sprite(this.width/2, 0, "mosque_wave_big");
