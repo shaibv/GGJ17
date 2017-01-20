@@ -20,6 +20,8 @@ var gameLevel = [
     [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
 ]
 
+var draggableBankCounter ={};
+
 window.onload = function () {
 
     //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
@@ -59,19 +61,9 @@ window.onload = function () {
 
         createBuildings(); //temp function
         drawBoard(gameLevel);
-        var draggable = game.add.sprite(0, 0, 'synagogue');
-        this.game.physics.arcade.enable(draggable);
-        draggable.inputEnabled = true;
-        draggable.input.enableDrag();
-        draggable.originalPosition = draggable.position.clone();
-        draggable.events.onDragStop.add(function (currentSprite) {
-            stopDrag(currentSprite, draggable);
-        }, this);
-        draggable.events.onDragStart.add(function (currentSprite) {
-
-        }, this);
-
+        bankFactory.init(this.game);
     }
+
 
     function drawBoard(board) {
         for (var i = 0; i < board.length; i++) {
@@ -90,22 +82,7 @@ window.onload = function () {
             }
         }
 
-
     }
-
-    function stopDrag(currentSprite, endSprite) {
-        console.log('drag stop');
-        debugger;
-        if (!this.game.physics.arcade.overlap(currentSprite, endSprite, function () {
-                currentSprite.input.draggable = false;
-                currentSprite.position.copyFrom(endSprite.position);
-                currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
-            })) {
-
-            //currentSprite.position.copyFrom(currentSprite.originalPosition);
-        }
-    }
-
 
     function createBuildings() {
         this.mosques = [];
