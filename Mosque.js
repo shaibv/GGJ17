@@ -7,7 +7,7 @@ Mosque.prototype = Object.create(Building.prototype);
 Mosque.prototype.constructor = Mosque;
 
 Mosque.prototype.sendWaves = function() {
-	console.log("SENDING WAVES");
+	console.log("MOSQUE SENDING WAVES");
 };
 
 
