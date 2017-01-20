@@ -13,6 +13,8 @@ var gameLevelObj = new GameLevel();
 
 var gameLevel = gameLevelObj.getData();
 
+var agents = [];
+
 window.onload = function () {
 
     //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
@@ -22,11 +24,8 @@ window.onload = function () {
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
     function update() {
-
         updateBuldings();
-        //drawBoard(gameLevel);
-
-
+        updateAgents();
     }
 
     function create() {
@@ -36,6 +35,8 @@ window.onload = function () {
         drawBoard(gameLevel);
         gameLevelObj.completeData();
         bankFactory.init(this.game);
+        createAgents();
+
     }
 
 
@@ -57,10 +58,10 @@ window.onload = function () {
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
                             case "Obsticle":
-                                entity = new House(this.game, x, y, assetName); //temp
+                                entity = new House(this.game, x, y, assetName, agents); //temp
                                 break;
                             case "House":
-                                entity = new House(this.game, x, y, assetName);
+                                entity = new House(this.game, x, y, assetName, agents);
                                 break;
                             case "Mosque":
                                 entity = new Mosque(this.game, x, y, assetName);
@@ -75,8 +76,6 @@ window.onload = function () {
                         sprite.anchor.set(0,1);
                     }
                 }
-
-
             }
         }
     }
@@ -88,12 +87,28 @@ window.onload = function () {
         this.mosques.push(new Mosque(game, 100, 100, "mosque"));
     }
 
+    /*
+        TODO: will move to emitter
+     */
+    function createAgents(){
+        var agent = new Agent(this.game, 300 + 30, 10, 0, 2, 1);
+        this.game.add.existing(agent);
+        agents.push(agent);
+    }
+
     function updateBuldings() {
         var buildings = this.mosques.concat(this.churches).concat(this.synagogues);
         for (var i = 0; i < buildings.length; i++) {
             var building = buildings[i];
             building.doTick(new Date());
         }
+    }
+
+    function updateAgents(){
+        for (var i = 0; i<agents.length; i++){
+            agents[i].move();
+        }
+
     }
     
 
