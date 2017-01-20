@@ -43,13 +43,14 @@ window.onload = function () {
 
 
     function update() {
-
+        
+        drawBoard(gameLevel);
 
     }
 
     function create() {
 
-        drawBoard(gameLevel)
+        drawBoard(gameLevel);
 
 
     }
