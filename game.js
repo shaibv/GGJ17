@@ -32,7 +32,7 @@ window.onload = function () {
 
         game.load.image('logo', 'phaser.png');
 
-        game.load.image('musk', 'assets/mousin.png');
+        game.load.image('mosque', 'assets/mosque.png');
 
         game.load.image('synagogue', 'assets/synagogue.png');
 
@@ -58,10 +58,10 @@ window.onload = function () {
                 var y = i* gameOptions.tileSize;
                 var assetName = 'block';
                 if(tileType == 1){
-                    var assetName = 'musk';
+                     assetName = 'mosque';
 
                 }
-                var sprite = game.add.sprite(x, j, assetName);
+                var sprite = game.add.sprite(x, y, assetName);
 
             }
 
