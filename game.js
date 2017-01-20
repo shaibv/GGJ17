@@ -33,18 +33,15 @@ window.onload = function () {
     function preload() {
 
         this.game.load.image('logo', 'phaser.png');
-
+        
         this.game.load.image('mosque', 'assets/mosque.png');
-
         this.game.load.image('synagogue', 'assets/synagogue.png');
-
         this.game.load.image('church', 'assets/church.png');
-
         this.game.load.image('block', 'assets/blue_tile.png');
-
         this.game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
-
         this.game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
+        
+        this.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
     }
 
 
