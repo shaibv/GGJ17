@@ -23,3 +23,7 @@ Home.prototype.doTick = function(time) {
         this.agentNum --;
     }
 }
+
+function () {
+    
+}
