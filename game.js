@@ -26,34 +26,46 @@ window.onload = function () {
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
-    var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+    this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 
     function preload() {
 
-        game.load.image('logo', 'phaser.png');
+        this.game.load.image('logo', 'phaser.png');
 
-        game.load.image('mosque', 'assets/mosque.png');
+        this.game.load.image('mosque', 'assets/mosque.png');
 
-        game.load.image('synagogue', 'assets/synagogue.png');
+        this.game.load.image('synagogue', 'assets/synagogue.png');
 
-        game.load.image('church', 'assets/church.png');
+        this.game.load.image('church', 'assets/church.png');
 
-        game.load.image('block', 'assets/blue_tile.png');
+        this.game.load.image('block', 'assets/blue_tile.png');
     }
 
 
     function update() {
-        
+
         updateBuldings();
-        drawBoard(gameLevel);
+        //drawBoard(gameLevel);
 
 
     }
 
     function create() {
+        this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         createBuildings(); //temp function
         drawBoard(gameLevel);
+        var draggable = game.add.sprite(0, 0, 'synagogue');
+        this.game.physics.arcade.enable(draggable);
+        draggable.inputEnabled = true;
+        draggable.input.enableDrag();
+        draggable.originalPosition = draggable.position.clone();
+        draggable.events.onDragStop.add(function (currentSprite) {
+            stopDrag(currentSprite, draggable);
+        }, this);
+        draggable.events.onDragStart.add(function (currentSprite) {
+
+        }, this);
 
     }
 
@@ -62,19 +74,36 @@ window.onload = function () {
             var row = board[i];
             for (var j = 0; j < row.length; j++) {
                 var tileType = row[j];
-                var x = j* gameOptions.tileSize;
-                var y = i* gameOptions.tileSize;
+                var x = j * gameOptions.tileSize;
+                var y = i * gameOptions.tileSize;
                 var assetName = 'block';
-                if(tileType == 1){
+                if (tileType == 1) {
                     assetName = 'mosque';
 
                 }
-                var sprite = game.add.sprite(x, y, assetName);
+                var sprite = this.game.add.sprite(x, y, assetName);
 
             }
+        }
 
+
+    }
+
+    function stopDrag(currentSprite, endSprite) {
+        console.log('drag stop');
+        debugger;
+        if (!this.game.physics.arcade.overlap(currentSprite, endSprite, function () {
+                currentSprite.input.draggable = false;
+                currentSprite.position.copyFrom(endSprite.position);
+                currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
+            })) {
+
+            //currentSprite.position.copyFrom(currentSprite.originalPosition);
         }
     }
+
+
+
 
     function createBuildings() {
         this.mosques = [];
