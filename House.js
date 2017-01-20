@@ -2,10 +2,14 @@
  * Created by adi on 1/20/2017.
  */
 House = function (game, x, y, resource) {
-    this.prototype = Building(game, x, y, resource)
+    this.type = "House";
     this.agentNum = 0;
     this.agentRate = 5;
+    Building.call(this, game, x, y, resource);
 }
+
+House.prototype = Object.create(Building.prototype);
+House.prototype.constructor = House;
 
 House.prototype.setAgentNum = function (num) {   
     this.agentNum = num;    
