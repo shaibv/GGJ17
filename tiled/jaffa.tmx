@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="8" tilewidth="60" tileheight="60" nextobjectid="1">
+ <tileset firstgid="1" name="buildings" tilewidth="181" tileheight="181" tilecount="8" columns="0">
+  <tile id="3">
+   <image width="61" height="61" source="../assets/house.png"/>
+  </tile>
+  <tile id="4">
+   <image width="61" height="181" source="../assets/mosque_small.png"/>
+  </tile>
+  <tile id="5">
+   <image width="61" height="121" source="../assets/mosque1.png"/>
+  </tile>
+  <tile id="6">
+   <image width="121" height="121" source="../assets/mosque2.png"/>
+  </tile>
+  <tile id="7">
+   <image width="181" height="61" source="../assets/obsticle1.png"/>
+  </tile>
+  <tile id="8">
+   <image width="181" height="121" source="../assets/obsticle2.png"/>
+  </tile>
+  <tile id="9">
+   <image width="61" height="61" source="../assets/obsticle3.png"/>
+  </tile>
+  <tile id="10">
+   <image width="121" height="121" source="../assets/obsticle4.png"/>
+  </tile>
+ </tileset>
  <layer name="Tile Layer 1" width="16" height="8">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,4,0,0,0,0,0,8,0,0,0,4,4,0,0,10,
+0,0,4,4,4,0,0,0,0,0,0,4,4,0,0,0,
+0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,7,0,0,8,0,0,0,0,
+0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,5,
+0,11,0,0,0,0,4,4,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0
 </data>
  </layer>
 </map>
