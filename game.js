@@ -52,9 +52,9 @@ window.onload = function () {
                 else {
                     tileType = tileType -1;
                     var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
-                    var entity;
-                    if (!tileObject) { //TODO: fix this
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType+1);
+                    var entity =null;
+                    if (tileObject) { //TODO: fix this
                         switch (tileObject) {
                             case "Obsticle":
                                 entity = new House(this.game, x, y, assetName); //temp
@@ -79,7 +79,6 @@ window.onload = function () {
 
             }
         }
-
     }
 
     function createBuildings() {
