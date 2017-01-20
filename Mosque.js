@@ -19,7 +19,8 @@ Mosque.prototype.sendWaves = function() {
     setInterval(function() {
     	smallWaveAnim.start();
     }, 160);
-
+    var sound = game.add.audio('mosque_sound1');
+    sound.play();
 };
 
 Mosque.prototype.createWaveAnimation = function(waveEntity) {
