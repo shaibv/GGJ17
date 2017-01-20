@@ -1,12 +1,12 @@
 var TILE_TYPE_TO_OBJECT = {
-    3: "Obsitcle",
+    3: "Obsticle",
     4: "House",
     5: "Mosque",
     6: "Mosque",
     7: "Mosque",
-    8: "Obsitcle",
-    9: "Obsitcle",
-    10: "Obsitcle"
+    8: "Obsticle",
+    9: "Obsticle",
+    10: "Obsticle"
 };
 
 var data = { "height":8,

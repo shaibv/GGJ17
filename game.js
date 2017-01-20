@@ -53,16 +53,18 @@ window.onload = function () {
                     var assetName = gameLevelObj.getAssetNameById(tileType);
                     var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
                     var entity;
-                    switch (tileObject) {
-                        case "Obsticle":
-                            entity = new House(this.game, x, y, assetName); //temp
-                            break;
-                        case "House":
-                            entity = new House(this.game, x, y, assetName);
-                            break;
-                        case "Mosque":
-                            entity = new Mosque(this.game, x, y, assetName);
-                            break;
+                    if (!tileObject) { //TODO: fix this
+                        switch (tileObject) {
+                            case "Obsticle":
+                                entity = new House(this.game, x, y, assetName); //temp
+                                break;
+                            case "House":
+                                entity = new House(this.game, x, y, assetName);
+                                break;
+                            case "Mosque":
+                                entity = new Mosque(this.game, x, y, assetName);
+                                break;
+                        }
                     }
                     if (entity) {
                         entity.anchor.set(0,1);
