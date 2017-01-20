@@ -19,7 +19,7 @@ window.onload = function () {
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
-    this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
+    this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
     function preload() {
 
@@ -28,18 +28,6 @@ window.onload = function () {
         for (var i=0; i<assetsToLoad.length; i++){
             this.game.load.image(assetsToLoad[i], "assets/"+assetsToLoad[i]+".png");
         }
-
-
-        this.game.load.image('logo', 'phaser.png');
-        
-        this.game.load.image('mosque', 'assets/mosque.png');
-        this.game.load.image('synagogue', 'assets/synagogue.png');
-        this.game.load.image('church', 'assets/church.png');
-        this.game.load.image('block', 'assets/blue_tile.png');
-        this.game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
-        this.game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
-        
-        this.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
     }
 
 
