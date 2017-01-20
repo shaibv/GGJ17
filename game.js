@@ -43,7 +43,7 @@ window.onload = function () {
 
 
     function update() {
-        
+
         drawBoard(gameLevel);
 
     }
@@ -73,6 +73,14 @@ window.onload = function () {
 
         }
 
+    }
+
+    function tileToLoc(i, j) {
+         return [j* gameOptions.tileSize, i* gameOptions.tileSize]
+    }
+
+    function locToTile(x, y,) {
+        return [x / gameOptions.tileSize, y / gameOptions.tileSize]
     }
 
 };
