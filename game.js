@@ -9,16 +9,10 @@ var gameOptions = {
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
 }
 
-var gameLevel = [
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
-]
+var gameLevelObj = new GameLevel();
+
+
+var gameLevel = gameLevelObj.getData();
 
 window.onload = function () {
 
@@ -29,6 +23,10 @@ window.onload = function () {
     var game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: preload, create: create, update: update});
 
     function preload() {
+        var assets = gameLevelObj.getAssetsToLoad();
+        for (var i=0; i<assets.length; i++){
+            game.load.image(assets[i], "assets/"+assets[i]+".png");
+        }
 
         game.load.image('logo', 'phaser.png');
 
@@ -63,13 +61,20 @@ window.onload = function () {
             for (var j = 0; j < row.length; j++) {
                 var tileType = row[j];
                 var x = j* gameOptions.tileSize;
-                var y = i* gameOptions.tileSize;
-                var assetName = 'block';
-                if(tileType == 1){
-                    assetName = 'mosque';
+                var y = (i+1)* gameOptions.tileSize;
+                var assetName;
+                if (tileType == 0){
+                    assetName = "block";
+                }
+                else {
+                    tileType = tileType-1;
+                    assetName = gameLevelObj.getAssetNameById(tileType.toString());
+                    var sprite = game.add.sprite(x, y, assetName);
+                    sprite.anchor.setTo(0, 1);
 
                 }
-                var sprite = game.add.sprite(x, y, assetName);
+
+
 
             }
 
@@ -89,7 +94,7 @@ window.onload = function () {
         this.mosques = [];
         this.churches = [];
         this.synagogues = [];
-        this.mosques.push(new Mosque(game, 100, 100, "mosque"));
+        //this.mosques.push(new Mosque(game, 100, 100, "mosque"));
     }
 
     function updateBuldings() {

@@ -1,7 +1,7 @@
-GanmeLevel= { "height":8,
+var data = { "height":8,
     "layers":[
         {
-            "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 4, 4, 0, 0, 10, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 11, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0],
+            "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 4, 4, 0, 0, 10, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0],
             "height":8,
             "name":"Tile Layer 1",
             "opacity":1,
@@ -20,7 +20,7 @@ GanmeLevel= { "height":8,
             "columns":0,
             "firstgid":1,
             "margin":0,
-            "name":"buildings",
+            "name":"GameLevels",
             "spacing":0,
             "tilecount":8,
             "tileheight":181,
@@ -65,3 +65,56 @@ GanmeLevel= { "height":8,
     "version":1,
     "width":16
 };
+
+GameLevel = function() {
+};
+
+GameLevel.prototype = Object.create(Phaser.Sprite.prototype);
+GameLevel.prototype.constructor = GameLevel;
+
+GameLevel.prototype.getData = function() {
+
+    var gameData =  data.layers[0]["data"];
+
+    var convertedData = [];
+    for (var i =0; i<data.height; i++){
+        var row = [];
+        for (var j=0; j<data.width; j++){
+            row.push(gameData[i*(data.width)+j]);
+        }
+        convertedData.push(row);
+    }
+    return convertedData;
+};
+
+GameLevel.prototype.getAssetName = function(assetName){
+    return assetName.replace("../assets/", "");
+};
+GameLevel.prototype.getAssetNameNoExtension = function(assetName){
+    var asseetNameWithExtension = assetName.replace("../assets/", "");
+    return asseetNameWithExtension.replace(".png","");
+};
+
+GameLevel.prototype.getAssetNameById = function(id){
+    var tilesets = data.tilesets[0];
+    var specificTile = tilesets.tiles[id];
+    if (!specificTile){
+        console.log(id);
+    }
+    var image = specificTile.image;
+    return this.getAssetNameNoExtension(image);
+};
+
+GameLevel.prototype.getAssetsToLoad = function(){
+    var assetsToLoad = [];
+    var tilesets = data.tilesets[0];
+    var tiles = tilesets.tiles;
+    for (var tile in tiles) {
+        if (tiles.hasOwnProperty(tile)) {
+            assetsToLoad.push(this.getAssetNameNoExtension(tiles[tile].image));
+        }
+    }
+    return assetsToLoad;
+};
+
+
