@@ -9,7 +9,8 @@ var bankFactory = {
 
 var draggableBankCounter = {};
 
-function init(game) {
+function init(game, gameBoard) {
+    this.gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     initDraggable(0, 500, 'synagogue', 2);
@@ -43,17 +44,21 @@ function init(game) {
 
     function stopDrag(currentSprite, endSprite, type) {
         console.log('drag stop');
-        //if (!this.game.physics.arcade.overlap(currentSprite, endSprite, function () {
-        currentSprite.input.draggable = false;
-        currentSprite.position.copyFrom(endSprite.position);
-        currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
-        draggableBankCounter[type]--;
-
-
-        //})) {
         //check legal drop here
+        if (!this.game.physics.arcade.overlap(currentSprite, endSprite)) {
+            currentSprite.input.draggable = false;
+            currentSprite.position.copyFrom(endSprite.position);
+            currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
+            draggableBankCounter[type]--;
+        }
+    }
 
+    function checkDrop(sprite){
+        var cell = Utils.locToTile(sprite.x,sprite.y);
+        return this.gameLevel.getData()[cell[1],cell[0]];
 
     }
 
-};
+
+
+}
