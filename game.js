@@ -10,14 +10,14 @@ var gameOptions = {
 }
 
 var gameLevel = [
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
-    [0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+    [1, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0]
 ]
 
 window.onload = function () {
@@ -43,12 +43,16 @@ window.onload = function () {
         game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
 
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
+
+        // Temp - for testing only
+        game.load.image('agent', 'assets/agent.png');
     }
 
 
     function update() {
         
         updateBuldings();
+        updateAgents();
         drawBoard(gameLevel);
 
 
@@ -57,6 +61,7 @@ window.onload = function () {
     function create() {
 
         createBuildings(); //temp function
+        createDemoAgent();
         drawBoard(gameLevel);
 
     }
@@ -78,14 +83,9 @@ window.onload = function () {
             }
 
         }
-    }
 
-    function tileToLoc(j , i) {
-        return [j* gameOptions.tileSize, i* gameOptions.tileSize ]
-    }
-
-    function locToTile(x, y) {
-        return[x / gameOptions.tileSize, y / gameOptions.tileSize]
+        // Temp - for testing only - add an agent at the upper left corner
+        var sprite = game.add.sprite(1, 1, 'agent');
     }
 
 
@@ -96,6 +96,11 @@ window.onload = function () {
         this.mosques.push(new Mosque(game, 100, 100, "mosque"));
     }
 
+    function createDemoAgent() {
+        this.agent = new Agent(game,0, 0, 'agent', 1, 0, 1);
+        //this.game.add.existing(this.agent);
+    }
+
     function updateBuldings() {
         var buildings = this.mosques.concat(this.churches).concat(synagogues);
         for (var i = 0; i < buildings.length; i++) {
@@ -104,4 +109,17 @@ window.onload = function () {
         }
     }
 
+    function updateAgents() {
+        this.agent.doTick(new Date());
+    }
+
 };
+
+function tileToLoc(j , i) {
+    return [j* gameOptions.tileSize, i* gameOptions.tileSize ]
+}
+
+function locToTile(x, y) {
+    return[x / gameOptions.tileSize, y / gameOptions.tileSize]
+}
+
