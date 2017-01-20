@@ -38,7 +38,11 @@ window.onload = function () {
 
         this.game.load.image('church', 'assets/church.png');
 
-        this.game.load.image('block', 'assets/blue_tile.png');
+        game.load.image('block', 'assets/blue_tile.png');
+
+        game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
+
+        game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
     }
 
 
@@ -101,8 +105,6 @@ window.onload = function () {
             //currentSprite.position.copyFrom(currentSprite.originalPosition);
         }
     }
-
-
 
 
     function createBuildings() {
