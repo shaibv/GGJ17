@@ -43,15 +43,21 @@ window.onload = function () {
 
 
     function update() {
+<<<<<<< .merge_file_a02564
 
+=======
+        
+        updateBuldings();
+>>>>>>> .merge_file_a07064
         drawBoard(gameLevel);
+
 
     }
 
     function create() {
 
+        createBuildings(); //temp function
         drawBoard(gameLevel);
-
 
     }
 
@@ -72,7 +78,21 @@ window.onload = function () {
             }
 
         }
+    }
 
+    function createBuildings() {
+        this.mosques = [];
+        this.churches = [];
+        this.synagogues = [];
+        this.mosques.push(new Mosque(game, 100, 100, "mosque"));
+    }
+
+    function updateBuldings() {
+        var buildings = this.mosques.concat(this.churches).concat(synagogues);
+        for (var i = 0; i < buildings.length; i++) {
+            var building = buildings[i];
+            building.doTick(new Date());
+        }
     }
 
     function tileToLoc(i, j) {
