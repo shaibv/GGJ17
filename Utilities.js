@@ -2,17 +2,17 @@
  * Created by adi on 1/20/2017.
  */
 var Utils = {
-    tileToLoc : function(i , j) {
-        if (i < 0)
-            i = 0;
-        if (i > gameOptions.gameWidth / gameOptions.tileSize)
-            i = gameOptions.gameWidth;
-        if (j < 0)
-            j = 0;
-        if (j > gameOptions.gameHeight / gameOptions.tileSize)
-            j = gameOptions.gameHeight;
-        var x = i* gameOptions.tileSize;
-        var y = j* gameOptions.tileSize;
+    tileToLoc : function(row , col) {
+        if (row < 0)
+            row = 0;
+        if (row > gameOptions.gameWidth / gameOptions.tileSize)
+            row = gameOptions.gameWidth;
+        if (col < 0)
+            col = 0;
+        if (col > gameOptions.gameHeight / gameOptions.tileSize)
+            col = gameOptions.gameHeight;
+        var x = row* gameOptions.tileSize;
+        var y = col* gameOptions.tileSize;
         if (x > gameOptions.gameWidth)
             x = gameOptions.gameWidth;
         if (y > gameOptions.gameHeight)
@@ -29,6 +29,6 @@ var Utils = {
             y = 0;
         if (y > gameOptions.gameHeight)
             y = gameOptions.gameHeight;
-        return {'i' : Math.floor( x / gameOptions.tileSize) , 'j': Math.floor( y / gameOptions.tileSize)};
+        return {'row' : Math.floor( x / gameOptions.tileSize) , 'col': Math.floor( y / gameOptions.tileSize)};
     }
 }
