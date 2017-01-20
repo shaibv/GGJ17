@@ -67,6 +67,8 @@ window.onload = function () {
 
         }
 
+        var mosque = new Mosque(game, 100, 100, "mosque");
+
     }
 
 };
