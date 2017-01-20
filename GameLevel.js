@@ -1,7 +1,7 @@
 var data = { "height":8,
     "layers":[
         {
-            "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 8, 0, 0, 0, 4, 4, 0, 0, 10, 0, 0, 4, 4, 4, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0],
+            "data":[0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 21, 0, 8, 0, 0, 0, 4, 4, 0, 0, 10, 0, 0, 4, 4, 4, 21, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 7, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 4, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 11, 0, 0, 0, 21, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 18, 15, 15, 15, 9, 0, 0, 0, 0, 0, 0],
             "height":8,
             "name":"Tile Layer 1",
             "opacity":1,
@@ -20,15 +20,55 @@ var data = { "height":8,
             "columns":0,
             "firstgid":1,
             "margin":0,
-            "name":"GameLevels",
+            "name":"buildings",
             "spacing":0,
-            "tilecount":8,
+            "tilecount":18,
             "tileheight":181,
             "tiles":
             {
                 "10":
                 {
                     "image":"..\/assets\/obsticle4.png"
+                },
+                "11":
+                {
+                    "image":"..\/assets\/road_corner_south_east.png"
+                },
+                "12":
+                {
+                    "image":"..\/assets\/road_corner_south_west.png"
+                },
+                "13":
+                {
+                    "image":"..\/assets\/road_corner_west_north.png"
+                },
+                "14":
+                {
+                    "image":"..\/assets\/road_east.png"
+                },
+                "15":
+                {
+                    "image":"..\/assets\/road_junction_cross.png"
+                },
+                "16":
+                {
+                    "image":"..\/assets\/road_junction_t_east.png"
+                },
+                "17":
+                {
+                    "image":"..\/assets\/road_junction_t_north.png"
+                },
+                "18":
+                {
+                    "image":"..\/assets\/road_junction_t_south.png"
+                },
+                "19":
+                {
+                    "image":"..\/assets\/road_junction_t_west.png"
+                },
+                "20":
+                {
+                    "image":"..\/assets\/road_north.png"
                 },
                 "3":
                 {
