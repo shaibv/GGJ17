@@ -44,14 +44,16 @@ window.onload = function () {
 
     function update() {
         
+        updateBuldings();
         drawBoard(gameLevel);
+
 
     }
 
     function create() {
 
+        createBuildings(); //temp function
         drawBoard(gameLevel);
-
 
     }
 
@@ -72,9 +74,21 @@ window.onload = function () {
             }
 
         }
+    }
 
-        var mosque = new Mosque(game, 100, 100, "mosque");
+    function createBuildings() {
+        this.mosques = [];
+        this.churches = [];
+        this.synagogues = [];
+        this.mosques.push(new Mosque(game, 100, 100, "mosque"));
+    }
 
+    function updateBuldings() {
+        var buildings = this.mosques.concat(this.churches).concat(synagogues);
+        for (var i = 0; i < buildings.length; i++) {
+            var building = buildings[i];
+            building.doTick(new Date());
+        }
     }
 
 };
