@@ -76,6 +76,15 @@ window.onload = function () {
         }
     }
 
+    function tileToLoc(j , i) {
+        return [j* gameOptions.tileSize, i* gameOptions.tileSize ]
+    }
+
+    function locToTile(x, y) {
+        return[x / gameOptions.tileSize, y / gameOptions.tileSize]
+    }
+
+
     function createBuildings() {
         this.mosques = [];
         this.churches = [];
