@@ -4,7 +4,7 @@ Synagogue = function(game, x, y, resource) {
 };
 
 Synagogue.prototype = Object.create(Building.prototype);
-Synagogue.prototype.constructor = Mosque;
+Synagogue.prototype.constructor = Synagogue;
 
 Synagogue.prototype.sendWaves = function() {
 	console.log("SYNAGOGUE SENDING WAVES");
