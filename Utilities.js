@@ -21,6 +21,14 @@ var Utils = {
     },
 
     locToTile : function (x, y) {
+        if (x < 0)
+            x = 0;
+        if (x > gameOptions.gameWidth)
+            x = gameOptions.gameWidth;
+        if (y < 0)
+            y = 0;
+        if (y > gameOptions.gameHeight)
+            y = gameOptions.gameHeight;
         return {'i' : Math.floor( x / gameOptions.tileSize) , 'j': Math.floor( y / gameOptions.tileSize)};
     }
 }
