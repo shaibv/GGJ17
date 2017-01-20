@@ -34,6 +34,7 @@ window.onload = function () {
 
         createBuildings(); //temp function
         drawBoard(gameLevel);
+        gameLevelObj.completeData();
         bankFactory.init(this.game);
     }
 
