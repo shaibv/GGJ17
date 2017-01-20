@@ -3,10 +3,16 @@
  */
 var Utils = {
     locToTile : function(j , i) {
-        return [j* gameOptions.tileSize, i* gameOptions.tileSize ];
+        var x = j* gameOptions.tileSize;
+        var y = i* gameOptions.tileSize;
+        if (x > gameOptions.gameWidth)
+            x = gameOptions.gameWidth;
+        if (y > gameOptions.gameHeight)
+            y = gameOptions.gameHeight;
+        return [x, y ];
     },
 
     tileToLoc : function (x, y) {
-        return[x / gameOptions.tileSize, y / gameOptions.tileSize];
+        return[Math.floor( x / gameOptions.tileSize) , Math.floor( y / gameOptions.tileSize)];
     }
 }
