@@ -49,15 +49,24 @@ function init(game, gameBoard) {
             currentSprite.input.draggable = false;
             currentSprite.position.copyFrom(endSprite.position);
             currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
+            snapDrop(currentSprite);
             draggableBankCounter[type]--;
         }
     }
 
     function checkDrop(sprite){
         var cell = Utils.locToTile(sprite.x,sprite.y);
-        return this.gameLevel.getData()[cell[1],cell[0]];
+        return !!this.gameLevel.getData()[cell[1],cell[0]];
 
     }
+    function snapDrop(sprite){
+        var cell = Utils.locToTile(sprite.x,sprite.y);
+        var fixedPosition =  Utils.tileToLoc(cell[1],cell[0]);
+        sprite.x =  fixedPosition.x;
+        sprite.y =  fixedPosition.y;
+
+    }
+
 
 
 
