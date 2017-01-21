@@ -1,5 +1,6 @@
 Timer = function(game, x, y, totalTime) {
 	this.type = "Timer";
+	this.game = game;
 	this.innerTimer = game.time.create(false);
 	ImageEntity.call(this, game, x, y, "timer_frame");
 	
@@ -39,6 +40,9 @@ Timer.prototype.start = function() {
 	var timer = this;
 	setInterval(function() {
 		var minutesReduced = false;
+		if (timer.game.gameEnded) {
+			return;
+		}
 		if (timer.currentTime.minutes > 0 || timer.currentTime.seconds > 0) {
 			timer.currentTime.seconds--;
 			if (timer.currentTime.seconds == 0) {
