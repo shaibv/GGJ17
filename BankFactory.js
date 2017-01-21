@@ -13,7 +13,7 @@ function initBanks(game, gameBoard) {
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     initDraggable(0, 480, 'mosque2', 1);
-    initDraggable(140, 480, 'mosque1', 1);
+    initDraggable(140, 480, 'mosque1', 2);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
@@ -21,8 +21,7 @@ function initBanks(game, gameBoard) {
             sound.play();
             initDraggable(currentSprite.x, currentSprite.y, type, draggableBankCounter[type]);
         } else {
-            currentSprite.alpha = 0.5;
-            currentSprite.inputEnabled = false;
+
         }
     }
 
@@ -41,40 +40,47 @@ function initBanks(game, gameBoard) {
 
             dragStart(currentSprite, type);
         }, this);
+        draggables[type] = draggable;
+
+
 
     }
 
     function stopDrag(currentSprite, endSprite, type) {
         console.log('drag stop');
         //check legal drop here
-        if (!bankFactoryContext.game.physics.arcade.overlap(currentSprite, endSprite)&&checkDrop(currentSprite)) {
+        if (!bankFactoryContext.game.physics.arcade.overlap(currentSprite, endSprite) && checkDrop(currentSprite)) {
             currentSprite.input.draggable = false;
             currentSprite.position.copyFrom(endSprite.position);
             currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
             snapDrop(currentSprite);
             draggableBankCounter[type]--;
-        }else{
+            if(!draggableBankCounter[type]){
+                draggables[type].alpha = 0.5;
+            }
+        } else {
+
             currentSprite.destroy()
         }
     }
 
     function checkDrop(sprite) {
         console.log('Cant Drop Here');
-        var xPos = Math.round(sprite.x/gameOptions.tileSize) * gameOptions.tileSize ;
-        var yPos = Math.round(sprite.y/gameOptions.tileSize) * gameOptions.tileSize;
+        var xPos = Math.round(sprite.x / gameOptions.tileSize) * gameOptions.tileSize;
+        var yPos = Math.round(sprite.y / gameOptions.tileSize) * gameOptions.tileSize;
         var cell = Utils.locToTile(xPos, yPos + gameOptions.tileSize);
-        var cellContent = gameLevel[cell.row]? gameLevel[cell.row][ cell.col] : -1;
+        var cellContent = gameLevel[cell.row] ? gameLevel[cell.row][cell.col] : -1;
         return cellContent === 0;
 
     }
 
     function snapDrop(sprite) {
-        var xPos = Math.round(sprite.x/gameOptions.tileSize) * gameOptions.tileSize ;
-        var yPos = Math.round(sprite.y/gameOptions.tileSize) * gameOptions.tileSize;
-        var cell = Utils.locToTile(xPos, yPos +  2 * gameOptions.tileSize);
+        var xPos = Math.round(sprite.x / gameOptions.tileSize) * gameOptions.tileSize;
+        var yPos = Math.round(sprite.y / gameOptions.tileSize) * gameOptions.tileSize;
+        var cell = Utils.locToTile(xPos, yPos + 2 * gameOptions.tileSize);
         var fixedPosition = Utils.tileToLoc(cell.col, cell.row);
-        sprite.x = fixedPosition.x ;
-        sprite.y = fixedPosition.y ;
+        sprite.x = fixedPosition.x;
+        sprite.y = fixedPosition.y;
         var mosque = new Mosque(this.game, fixedPosition.x, fixedPosition.y, sprite.key);
         mosque.anchor.set(0, 1);
         mosques.push(mosque);
@@ -89,6 +95,7 @@ function initBanks(game, gameBoard) {
 }
 
 
+var draggables = {};
 var draggableBankCounter = {};
-var bankFactoryContext  = this;
+var bankFactoryContext = this;
 
