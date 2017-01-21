@@ -5,26 +5,32 @@
 
 ////////////////// Mocks ///////////////////
 
-function GetCurrentStrategy(x, y) {
+function GetCurrentStrategy(x, y, mosque) {
     var roads = Utils.getAdjacentRoads(Utils.locToTile(x, y));
     var directionX = Math.round(Math.random() * 2 - 1);
     var directionY = Math.round(Math.random() * 2 - 1);
 
     if (roads.length) {
-        var road = roads[roads.length - 1];
-        if (road.x > x) {
-            directionX = 1;
-        }
-        if (road.x < x) {
-            directionX = -1;
-        }
-        if (road.y < y) {
-            directionY = -1;
-        }
-        if (road.y > y) {
-            directionY = 1;
-        }
+        var target = roads[roads.length - 1];
     }
+    if (mosque) {
+        target = mosque;
+    }
+
+
+    if (target.x > x) {
+        directionX = 1;
+    }
+    if (target.x < x) {
+        directionX = -1;
+    }
+    if (target.y < y) {
+        directionY = -1;
+    }
+    if (target.y > y) {
+        directionY = 1;
+    }
+
     return [directionX, directionY];
 
 }
@@ -46,18 +52,19 @@ Agent.prototype = Object.create(ImageEntity.prototype);
 Agent.prototype.constructor = Agent;
 
 Agent.prototype.update = function () {
-    if(this.startedAnimation){
+    if (this.startedAnimation) {
         return;
     }
 
-    if(this.converted){
+    if (isInRange(this)) {
         var target = isInRange(this);
+        this.converted = true;
 
-        this.add.tween.to({x:target.x,y:target.y},100);
-        this.startedAnimation = true;
+
+
     }
-    this.directionX = GetCurrentStrategy(this.x, this.y)[0];
-    this.directionY = GetCurrentStrategy(this.x, this.y)[1];
+    this.directionX = GetCurrentStrategy(this.x, this.y,target)[0];
+    this.directionY = GetCurrentStrategy(this.x, this.y,target)[1];
     // Calc the new position
     this.x = this.x + (this.speed * this.directionX || 0 );
     this.y = this.y + (this.speed * this.directionY || 0);
@@ -76,9 +83,8 @@ Agent.prototype.update = function () {
 
     }
 
-    if(isInRange(this)){
-        this.converted = true;
-    }
+
+
 };
 
 Agent.prototype.getCell = function () {

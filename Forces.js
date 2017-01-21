@@ -29,7 +29,7 @@ function findCloseMosque(agent) {
 }
 
 function isInRange(agent){
-    var treshhold =200;
+    var treshhold =300;
       var mosque  = findCloseMosque(agent);
     if(mosque) {
         var distance = Math.sqrt(Math.pow(mosque.x - agent.x, 2) + Math.pow(mosque.y - agent.y, 2));
