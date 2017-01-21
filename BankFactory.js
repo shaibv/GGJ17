@@ -58,7 +58,9 @@ function initBanks(game, gameBoard) {
 
     function checkDrop(sprite) {
         console.log('Cant Drop Here');
-        var cell = Utils.locToTile(sprite.x, sprite.y);
+        var xPos = Math.round(sprite.x/gameOptions.tileSize) * gameOptions.tileSize ;
+        var yPos = Math.round(sprite.y/gameOptions.tileSize) * gameOptions.tileSize;
+        var cell = Utils.locToTile(xPos, yPos + gameOptions.tileSize);
         var cellContent = gameLevel[cell.row]? gameLevel[cell.row][ cell.col] : -1;
         return cellContent === 0;
 
