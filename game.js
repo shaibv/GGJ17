@@ -54,13 +54,16 @@ window.onload = function () {
 
         drawBoard(gameLevelData);
         this.gameData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, this.gameData);
+        bankFactory.init(this.game,this.gameData);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
         this.game.add.existing(this.game.initialDialog);
 
-        this.game.timer = new Timer(this.game, 870, 570, {minutes: 2, seconds: 59});
+        this.game.timer = new Timer(this.game, 870, 570, {
+            minutes: gameLevelParams.time.minutes, 
+            seconds: gameLevelParams.time.seconds
+        });
         this.game.add.existing(this.game.timer);
     }
 

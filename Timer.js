@@ -38,17 +38,20 @@ Timer.prototype.updateTime = function(time) {
 Timer.prototype.start = function() {
 	var timer = this;
 	setInterval(function() {
-		if (timer.currentTime.minutes > 0 && timer.currentTime.seconds > 0) {
+		var minutesReduced = false;
+		if (timer.currentTime.minutes > 0 || timer.currentTime.seconds > 0) {
 			timer.currentTime.seconds--;
 			if (timer.currentTime.seconds == 0) {
-				timer.currentTime.minutes--;
-				if (timer.currentTime.minutes >= 0) {
+				if (timer.currentTime.minutes > 0) {
+					timer.currentTime.minutes--;
+					minutesReduced = true;
+				}
+				if (minutesReduced && timer.currentTime.minutes >= 0) {
 					timer.currentTime.seconds = 59;
 				}
 			}
 		}
 		timer.update();
-
 	}, 1000);
 };
 

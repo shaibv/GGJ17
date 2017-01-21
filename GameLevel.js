@@ -7,7 +7,7 @@ var TILE_TYPE_TO_OBJECT = {
     8: "Obsticle",
     9: "Obsticle",
     10: "Obsticle",
-    11: "Road",
+    11: "Obsticle",
     12: "Road",
     13: "Road",
     14: "Road",
@@ -16,7 +16,8 @@ var TILE_TYPE_TO_OBJECT = {
     17: "Road",
     18: "Road",
     19: "Road",
-    20: "Road"
+    20: "Road",
+    21: "Road"
 };
 
 var data = { "height":8,
@@ -218,9 +219,9 @@ var data = { "height":8,
 }
 
 var levelParams = {
-    agentNumber: 100,   // total emitted agents in level 
-    convertTarget: 80,  // minimum agent number to convert in order to pass the level
-    time: 2             // level time in minutes
+    agentNumber: 100,                   // total emitted agents in level 
+    convertTarget: 80,                  // minimum agent number to convert in order to pass the level
+    time: {minutes: 2, seconds: 59}     // level time - minutes and seconds
 };
 
 GameLevel = function () {
