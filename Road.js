@@ -12,8 +12,10 @@ var TYPE_TO_DIRECTION = {
 	"road_north" : [1, 0, 1, 0]
 
 }
-Road = function(game, x, y, resource) {
+Road = function(game, x, y, resource, i, j) {
 	this.type = "Road";
+    this.row = i;
+    this.col = j;
 	this.resource = resource;
 	Building.call(this, game, x, y, resource);
 };

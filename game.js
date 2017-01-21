@@ -63,7 +63,7 @@ window.onload = function () {
         drawBoard(gameLevelData);
         this.gameData = gameLevelObj.getCompleteData();
         bankFactory.init(this.game, this.gameData);
-        ExitFactory.init(this.game);
+        //ExitFactory.init(this.game);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
@@ -106,7 +106,7 @@ window.onload = function () {
                                 mosques.push(entity);
                                 break;
                             case "Road":
-                                entity = new Road(this.game, x, y, assetName, tileType);
+                                entity = new Road(this.game, x, y, assetName, tileType, i, j);
                                 roads.push(entity);
                                 break;
                         }
