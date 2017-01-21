@@ -58,8 +58,7 @@ var Utils = {
     },
 
     randomInt: function(from, to) {
-        var range = till - from + 1;
-        return Math.floor(from + this.random() * range);
+        return Math.random() * (to - from) + from;
     }
 
 
