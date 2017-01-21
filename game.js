@@ -4,7 +4,7 @@
 
 var gameOptions = {
     gameWidth: 960,    // game width, in pixels
-    gameHeight: 600,   // game height, in pixels
+    gameHeight: 480,   // game height, in pixels
     tileSize: 60,     // tile size, in pixels
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
 };

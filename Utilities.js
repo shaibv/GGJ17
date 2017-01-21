@@ -23,15 +23,31 @@ var Utils = {
         return {'x': x, 'y': y};
     },
 
-    locToTile: function (x, y) {
-        if (x < 0)
+    locToTile: function (x, y, returnNullIfOut) {
+        if (x < 0){
+            if (returnNullIfOut) {
+                return null;
+            }
             x = 0;
-        if (x > gameOptions.gameWidth)
+        }
+        if (x > gameOptions.gameWidth) {
+            if (returnNullIfOut) {
+                return null;
+            }
             x = gameOptions.gameWidth;
-        if (y < 0)
+        }
+        if (y < 0) {
+            if (returnNullIfOut) {
+                return null;
+            }
             y = 0;
-        if (y > gameOptions.gameHeight)
+        }
+        if (y > gameOptions.gameHeight) {
+            if (returnNullIfOut) {
+                return null;
+            }
             y = gameOptions.gameHeight;
+        }
         return {'col': Math.floor(x / gameOptions.tileSize), 'row': Math.floor(y / gameOptions.tileSize)};
     },
 

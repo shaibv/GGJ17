@@ -82,7 +82,14 @@ Agent.prototype.doTick = function (time) {
     this.x = this.x + (this.speed * this.directionX || 0 );
     this.y = this.y + (this.speed * this.directionY || 0);
 
-    var cellAfterMove = Utils.locToTile(this.x, this.y);
+    var cellAfterMove = Utils.locToTile(this.x, this.y, true);
+
+    if (cellAfterMove == null) {
+        this.alpha = 0;
+        this.died = true;
+        this.game.levelState.lostAgents++;
+        return;
+    }
 
     cellAfterMove.row = Math.floor(cellAfterMove.row);
     cellAfterMove.col = Math.floor(cellAfterMove.col);
