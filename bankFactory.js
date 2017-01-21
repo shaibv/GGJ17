@@ -12,7 +12,8 @@ function initBanks(game, gameBoard) {
     var gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    initDraggable(0, 480, 'mosque2', 5);
+    initDraggable(0, 480, 'mosque2', 1);
+    initDraggable(140, 480, 'mosque1', 1);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
@@ -67,6 +68,11 @@ function initBanks(game, gameBoard) {
         var fixedPosition = Utils.tileToLoc(cell.col, cell.row);
         sprite.x = fixedPosition.x;
         sprite.y = fixedPosition.y;
+        var mosque = new Mosque(this.game, fixedPosition.x, fixedPosition.y, sprite.key);
+        mosque.anchor.set(0, 1);
+        mosques.push(mosque);
+        game.add.existing(mosque);
+        sprite.kill();
 
     }
 
