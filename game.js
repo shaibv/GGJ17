@@ -94,7 +94,7 @@ window.onload = function () {
 
         drawBoard(gameLevelData);
         CompletedData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, CompletedData);
+        BankFactory.init(this.game, CompletedData);
         ExitFactory.init(this.game);
         createAgents();
 

@@ -2,16 +2,14 @@
  * Created by shaibenvalid on 1/20/17.
  */
 
-var bankFactory = {
-    init: init
+var BankFactory = {
+    init: initBanks,
+
+
 }
 
-
-var draggableBankCounter = {};
-var bankFactory  = this;
-
-function init(game, gameBoard) {
-    this.gameLevel = gameBoard;
+function initBanks(game, gameBoard) {
+    var gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     initDraggable(0, 500, 'synagogue', 5);
@@ -28,7 +26,7 @@ function init(game, gameBoard) {
         console.log('quantity:' + quantity);
         draggableBankCounter[type] = quantity;
         var draggable = game.add.sprite(x, y, type);
-        bankFactory.game.physics.arcade.enable(draggable);
+        bankFactoryContext.game.physics.arcade.enable(draggable);
         draggable.inputEnabled = true;
         draggable.input.enableDrag();
         draggable.originalPosition = draggable.position.clone();
@@ -45,7 +43,7 @@ function init(game, gameBoard) {
     function stopDrag(currentSprite, endSprite, type) {
         console.log('drag stop');
         //check legal drop here
-        if (!bankFactory.game.physics.arcade.overlap(currentSprite, endSprite)&&checkDrop(currentSprite)) {
+        if (!bankFactoryContext.game.physics.arcade.overlap(currentSprite, endSprite)&&checkDrop(currentSprite)) {
             currentSprite.input.draggable = false;
             currentSprite.position.copyFrom(endSprite.position);
             currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
@@ -59,7 +57,7 @@ function init(game, gameBoard) {
     function checkDrop(sprite) {
         console.log('Cant Drop Here');
         var cell = Utils.locToTile(sprite.x, sprite.y);
-        var cellContent = bankFactory.gameLevel[cell.row]? bankFactory.gameLevel[cell.row][ cell.col] : -1;
+        var cellContent = gameLevel[cell.row]? gameLevel[cell.row][ cell.col] : -1;
         return cellContent === 0;
 
     }
@@ -74,3 +72,8 @@ function init(game, gameBoard) {
 
 
 }
+
+
+var draggableBankCounter = {};
+var bankFactoryContext  = this;
+
