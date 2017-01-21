@@ -6,7 +6,9 @@ var TILE_TYPE_TO_OBJECT = {
     7: "Mosque",
     8: "Obsticle",
     9: "Obsticle",
-    10: "Obsticle"
+    10: "Obsticle",
+    11: "Road",
+    11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",
 };
 
 var data = { "height":8,
@@ -210,14 +212,14 @@ var levelParams = {
 };
 
 GameLevel = function () {
-    return levelParams;
+
 };
 
 GameLevel.prototype = Object.create(Phaser.Sprite.prototype);
 GameLevel.prototype.constructor = GameLevel;
 
 GameLevel.prototype.getParams = function () {
-    return 
+    return levelParams;
 }
 
 GameLevel.prototype.getData = function () {
