@@ -103,8 +103,9 @@ window.onload = function () {
         this.music = this.add.audio('intro_sound',1,true);
         this.music.play('',0,1,true);
 
-        drawBoard(gameLevelData);
+
         CompletedData = gameLevelObj.getCompleteData();
+        drawBoard(CompletedData);
         BankFactory.init(this.game, CompletedData);
         ExitFactory.init(this.game);
         createAgents();
@@ -136,10 +137,12 @@ window.onload = function () {
                 var tileType = row[j];
                 var x = j * gameOptions.tileSize;
                 var y = (i + 1) * gameOptions.tileSize;
-                if (tileType == 0) {
-                    var assetName = 'block';
-                    var sprite = this.game.add.sprite(x, y, assetName);
-                    sprite.anchor.set(0, 1);
+                if (tileType == 0 || tileType ==-1) {
+                    if (tileType ==0){
+                        var assetName = 'block';
+                        var sprite = this.game.add.sprite(x, y, assetName);
+                        sprite.anchor.set(0, 1);
+                    }
                 }
                 else {
                     var assetName = gameLevelObj.getAssetNameById(tileType - 1);
