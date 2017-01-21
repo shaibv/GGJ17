@@ -56,6 +56,10 @@ Agent.prototype.update = function () {
         return;
     }
 
+    if (this.died) {
+        return;
+    }
+
     if (isInRange(this)) {
         var target = isInRange(this);
 
@@ -64,6 +68,7 @@ Agent.prototype.update = function () {
             this.addChild(game.make.sprite(-17, -28, "aura"));
         }
         this.converted = true;
+        this.walkingTarget = target;
     }
     this.directionX = GetCurrentStrategy(this.x, this.y,target)[0];
     this.directionY = GetCurrentStrategy(this.x, this.y,target)[1];
@@ -85,6 +90,12 @@ Agent.prototype.update = function () {
 
     }
 
+    if (this.converted && this.walkingTarget && this.getDistance(this.walkingTarget) < 30) {
+        this.game.levelState.convertedAgents++;
+        this.died = true;
+        // this.kill();
+    }
+
 
 
 };
@@ -97,4 +108,9 @@ Agent.prototype.getCell = function () {
 Agent.prototype.doTick = function (time) {
     this.update();
 };
+
+Agent.prototype.getDistance = function(otherEntity) {
+    return Math.sqrt(Math.pow(otherEntity.x - this.x, 2) + Math.pow(otherEntity.y - this.y, 2));
+}
+
 
