@@ -4,6 +4,7 @@ var PreLoader = {
         var game = window.game;
 
         game.load.image('background', 'assets/background.png');
+        game.load.image('aura', 'assets/person_aura.png');
 
         game.load.image('initial_dialog', 'assets/initial_dialog.png');
         game.load.image('timer_frame', 'assets/timer_frame.png');
@@ -21,7 +22,7 @@ var PreLoader = {
         game.load.image('agent_left', 'assets/person_20_left.png');
         game.load.image('agent_right', 'assets/person_20_right.png');
 
-        game.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
+        game.load.audio('mosque_sound1', ['assets/Moazin.mp3']);
         game.load.audio('intro_sound', ['assets/intro_sound.mp3']);
 
         var assetsToLoad = gameLevelObj.getAssetsToLoad();

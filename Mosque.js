@@ -7,7 +7,6 @@ Mosque.prototype = Object.create(Building.prototype);
 Mosque.prototype.constructor = Mosque;
 
 Mosque.prototype.emit = function() {
-    console.log("EREz")
 	var smallWave = this.game.make.sprite(this.width/2, -this.height/2, "mosque_wave_small");
 	var bigWave = this.game.make.sprite(this.width/2, -this.height/2, "mosque_wave_big");
 	bigWave.anchor.setTo(0.5, 0.5);
