@@ -46,6 +46,16 @@ Agent.prototype = Object.create(ImageEntity.prototype);
 Agent.prototype.constructor = Agent;
 
 Agent.prototype.update = function () {
+    if(this.startedAnimation){
+        return;
+    }
+
+    if(this.converted){
+        var target = isInRange(this);
+
+        this.add.tween.to({x:target.x,y:target.y},100);
+        this.startedAnimation = true;
+    }
     this.directionX = GetCurrentStrategy(this.x, this.y)[0];
     this.directionY = GetCurrentStrategy(this.x, this.y)[1];
     // Calc the new position
@@ -64,6 +74,10 @@ Agent.prototype.update = function () {
 
         // Change properties according to the forces of the new cell
 
+    }
+
+    if(isInRange(this)){
+        this.converted = true;
     }
 };
 
