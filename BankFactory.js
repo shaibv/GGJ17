@@ -12,7 +12,7 @@ function initBanks(game, gameBoard) {
     var gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    initDraggable(0, 500, 'synagogue', 5);
+    initDraggable(0, 480, 'mosque2', 5);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {

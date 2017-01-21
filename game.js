@@ -92,6 +92,8 @@ window.onload = function () {
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
+        this.game.add.sprite(0, 0, 'background');
+
         drawBoard(gameLevelData);
         CompletedData = gameLevelObj.getCompleteData();
         BankFactory.init(this.game, CompletedData);

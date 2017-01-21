@@ -3,7 +3,7 @@ var PreLoader = {
 
         var game = window.game;
 
-        game.load.image('logo', 'phaser.png');
+        game.load.image('background', 'assets/background.png');
 
         game.load.image('initial_dialog', 'assets/initial_dialog.png');
         game.load.image('timer_frame', 'assets/timer_frame.png');
