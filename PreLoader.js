@@ -7,6 +7,8 @@ var PreLoader = {
 
         game.load.image('initial_dialog', 'assets/initial_dialog.png');
         game.load.image('timer_frame', 'assets/timer_frame.png');
+        game.load.image('you_won', 'assets/you_won.png');
+        game.load.image('you_lost', 'assets/you_lost.png');
         
         game.load.image('mosque', 'assets/mosque.png');
         game.load.image('synagogue', 'assets/synagogue.png');
