@@ -28,10 +28,20 @@ window.onload = function () {
 
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
-    function update() {
-        updateBuldings();
-        updateAgents();
-    }
+    this.game.waitingToStart = true;
+
+     function update() {
+        if (this.game.waitingToStart) {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.game.initialDialog.kill();
+                this.game.waitingToStart = false;
+            }
+        } else {
+            updateBuldings();
+            updateAgents(); 
+        }
+     }
+
 
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -41,6 +51,8 @@ window.onload = function () {
         bankFactory.init(this.game);
         createAgents();
 
+        this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
+        this.game.add.existing(this.game.initialDialog);
     }
 
 
