@@ -31,7 +31,7 @@ House.prototype.doTick = function(time) {
         return;
     }
     var leftToEmit = totalAgentNumber - emittedAgents;
-    if (leftToEmit > 0) {
+    if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate) && leftToEmit > 0) {
         this.emit();
         this.lastWavesSentTime = time;
     }
