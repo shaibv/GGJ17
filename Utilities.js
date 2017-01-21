@@ -46,7 +46,7 @@ var Utils = {
             var col = roadTile[0];
             var row = roadTile[1];
             var value =  CompletedData[row] ? CompletedData[row][col] : 0;
-            return value >= Utils.minRoad && value <= Utils.minRoad;
+            return value >= Utils.minRoad && value <= Utils.maxRoad;
         });
 
         var roads = roadsTiles.map(function(tile){
