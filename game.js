@@ -71,10 +71,10 @@ window.onload = function () {
         var lostAgents = this.game.levelState.lostAgents;
         var convertedAgents = this.game.levelState.convertedAgents;
         if (this.game.timer.isTimeOver() || lostAgents > totalAgentNumber - convertTarget) {
-            this.endGameAsLose();
+            endGameAsLose();
         }
         if (convertedAgents > convertTarget) {
-            this.endGameAsWin();
+            endGameAsWin();
         }
     }
     ;
