@@ -22,7 +22,7 @@ var TILE_TYPE_TO_OBJECT = {
 var data = { "height":8,
     "layers":[
         {
-            "data":[0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 21, 0, 8, 0, 0, 0, 4, 4, 0, 0, 10, 0, 0, 4, 4, 4, 21, 0, 0, 0, 0, 0, 4, 4, 0, 0, 0, 0, 0, 0, 4, 0, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 7, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21, 4, 4, 0, 0, 0, 0, 0, 0, 0, 5, 0, 11, 0, 0, 0, 21, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 15, 15, 15, 18, 15, 15, 15, 9, 0, 0, 0, 0, 0, 0],
+            "data":[0, 0, 0, 0, 12, 15, 15, 15, 15, 17, 8, 0, 0, 21, 0, 0, 0, 0, 0, 4, 21, 0, 0, 0, 0, 21, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 0, 21, 0, 0, 0, 21, 0, 4, 0, 0, 0, 4, 12, 15, 15, 13, 0, 21, 0, 0, 0, 21, 12, 14, 0, 0, 10, 21, 21, 0, 0, 20, 15, 18, 15, 15, 15, 18, 18, 15, 0, 0, 0, 20, 14, 0, 0, 21, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 21, 0, 0, 21, 0, 0, 9, 0, 0, 15, 15, 15, 14, 0, 11, 0, 22, 15, 15, 14, 0, 0, 0, 0, 0],
             "height":8,
             "name":"Tile Layer 1",
             "opacity":1,
@@ -43,7 +43,7 @@ var data = { "height":8,
             "margin":0,
             "name":"buildings",
             "spacing":0,
-            "tilecount":18,
+            "tilecount":19,
             "tileheight":181,
             "tileproperties":
             {
@@ -177,6 +177,10 @@ var data = { "height":8,
                 {
                     "image":"..\/assets\/road_north.png"
                 },
+                "21":
+                {
+                    "image":"..\/assets\/road_corner_east_north.png"
+                },
                 "3":
                 {
                     "image":"..\/assets\/house.png"
@@ -250,7 +254,7 @@ GameLevel.prototype.getData = function () {
  * Complete the data - put -1 where the building is blocking
  * NOTE THE -1 in the id
  */
-GameLevel.prototype.completeData = function(){
+GameLevel.prototype.getCompleteData = function(){
     var convertedData = this.getData();
     var tile = data.tilesets[0]["tileproperties"];
     for (var i=0; i<data.height; i++){
@@ -268,7 +272,7 @@ GameLevel.prototype.completeData = function(){
             }
         }
     }
-    var a =1;
+    return convertedData;
 };
 
 GameLevel.prototype.getAssetName = function (assetName) {

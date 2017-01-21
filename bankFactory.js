@@ -8,13 +8,13 @@ var bankFactory = {
 
 
 var draggableBankCounter = {};
+var bankFactory  = this;
 
 function init(game, gameBoard) {
     this.gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    initDraggable(0, 500, 'synagogue', 2);
-
+    initDraggable(0, 500, 'synagogue', 5);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
@@ -28,7 +28,7 @@ function init(game, gameBoard) {
         console.log('quantity:' + quantity);
         draggableBankCounter[type] = quantity;
         var draggable = game.add.sprite(x, y, type);
-        this.game.physics.arcade.enable(draggable);
+        bankFactory.game.physics.arcade.enable(draggable);
         draggable.inputEnabled = true;
         draggable.input.enableDrag();
         draggable.originalPosition = draggable.position.clone();
@@ -45,29 +45,32 @@ function init(game, gameBoard) {
     function stopDrag(currentSprite, endSprite, type) {
         console.log('drag stop');
         //check legal drop here
-        if (!this.game.physics.arcade.overlap(currentSprite, endSprite)) {
+        if (!bankFactory.game.physics.arcade.overlap(currentSprite, endSprite)&&checkDrop(currentSprite)) {
             currentSprite.input.draggable = false;
             currentSprite.position.copyFrom(endSprite.position);
             currentSprite.anchor.setTo(endSprite.anchor.x, endSprite.anchor.y);
             snapDrop(currentSprite);
             draggableBankCounter[type]--;
+        }else{
+            currentSprite.destroy()
         }
     }
 
-    function checkDrop(sprite){
-        var cell = Utils.locToTile(sprite.x,sprite.y);
-        return !!this.gameLevel.getData()[cell.i,cell.j];
-
-    }
-    function snapDrop(sprite){
-        var cell = Utils.locToTile(sprite.x,sprite.y);
-        var fixedPosition =  Utils.tileToLoc(cell.i,cell.j);
-        sprite.x =  fixedPosition.x;
-        sprite.y =  fixedPosition.y;
+    function checkDrop(sprite) {
+        console.log('Cant Drop Here');
+        var cell = Utils.locToTile(sprite.x, sprite.y);
+        var cellContent = bankFactory.gameLevel[cell.row]? bankFactory.gameLevel[cell.row][ cell.col] : -1;
+        return cellContent === 0;
 
     }
 
+    function snapDrop(sprite) {
+        var cell = Utils.locToTile(sprite.x, sprite.y);
+        var fixedPosition = Utils.tileToLoc(cell.col, cell.row);
+        sprite.x = fixedPosition.x;
+        sprite.y = fixedPosition.y;
 
+    }
 
 
 }
