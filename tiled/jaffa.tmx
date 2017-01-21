@@ -1,41 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="8" tilewidth="60" tileheight="60" nextobjectid="1">
- <tileset firstgid="1" name="buildings" tilewidth="181" tileheight="181" tilecount="8" columns="0">
+ <tileset firstgid="1" name="buildings" tilewidth="181" tileheight="181" tilecount="18" columns="0">
   <tile id="3">
+   <properties>
+    <property name="height" value="1"/>
+    <property name="width" value="1"/>
+   </properties>
    <image width="61" height="61" source="../assets/house.png"/>
   </tile>
   <tile id="4">
+   <properties>
+    <property name="height" value="3"/>
+    <property name="width" value="1"/>
+   </properties>
    <image width="61" height="181" source="../assets/mosque_small.png"/>
   </tile>
   <tile id="5">
+   <properties>
+    <property name="height" value="2"/>
+    <property name="width" type="int" value="1"/>
+   </properties>
    <image width="61" height="121" source="../assets/mosque1.png"/>
   </tile>
   <tile id="6">
+   <properties>
+    <property name="height" value="2"/>
+    <property name="width" value="2"/>
+   </properties>
    <image width="121" height="121" source="../assets/mosque2.png"/>
   </tile>
   <tile id="7">
+   <properties>
+    <property name="height" value="1"/>
+    <property name="width" value="3"/>
+   </properties>
    <image width="181" height="61" source="../assets/obsticle1.png"/>
   </tile>
   <tile id="8">
+   <properties>
+    <property name="height" value="2"/>
+    <property name="width" value="3"/>
+   </properties>
    <image width="181" height="121" source="../assets/obsticle2.png"/>
   </tile>
   <tile id="9">
+   <properties>
+    <property name="height" value="1"/>
+    <property name="width" value="1"/>
+   </properties>
    <image width="61" height="61" source="../assets/obsticle3.png"/>
   </tile>
   <tile id="10">
+   <properties>
+    <property name="height" value="2"/>
+    <property name="width" value="2"/>
+   </properties>
    <image width="121" height="121" source="../assets/obsticle4.png"/>
+  </tile>
+  <tile id="11">
+   <image width="60" height="60" source="../assets/road_corner_south_east.png"/>
+  </tile>
+  <tile id="12">
+   <image width="60" height="60" source="../assets/road_corner_south_west.png"/>
+  </tile>
+  <tile id="13">
+   <image width="60" height="60" source="../assets/road_corner_west_north.png"/>
+  </tile>
+  <tile id="14">
+   <image width="60" height="60" source="../assets/road_east.png"/>
+  </tile>
+  <tile id="15">
+   <image width="60" height="60" source="../assets/road_junction_cross.png"/>
+  </tile>
+  <tile id="16">
+   <image width="60" height="60" source="../assets/road_junction_t_east.png"/>
+  </tile>
+  <tile id="17">
+   <image width="60" height="60" source="../assets/road_junction_t_north.png"/>
+  </tile>
+  <tile id="18">
+   <image width="60" height="60" source="../assets/road_junction_t_south.png"/>
+  </tile>
+  <tile id="19">
+   <image width="60" height="60" source="../assets/road_junction_t_west.png"/>
+  </tile>
+  <tile id="20">
+   <image width="60" height="60" source="../assets/road_north.png"/>
   </tile>
  </tileset>
  <layer name="Tile Layer 1" width="16" height="8">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,4,0,0,0,0,0,8,0,0,0,4,4,0,0,10,
-0,0,4,4,4,0,0,0,0,0,0,4,4,0,0,0,
-0,0,0,4,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,7,0,0,8,0,0,0,0,
-0,0,0,0,0,0,4,4,0,0,0,0,0,0,0,5,
-0,11,0,0,0,0,4,4,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,9,0,0,0,0,0,0
+0,0,0,0,0,21,0,0,0,0,0,0,0,0,0,0,
+0,4,0,0,0,21,0,8,0,0,0,4,4,0,0,10,
+0,0,4,4,4,21,0,0,0,0,0,4,4,0,0,0,
+0,0,0,4,0,21,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,21,0,0,7,0,0,8,0,0,0,0,
+0,0,0,0,0,21,4,4,0,0,0,0,0,0,0,5,
+0,11,0,0,0,21,4,4,0,0,0,0,0,0,0,0,
+0,15,15,15,15,18,15,15,15,9,0,0,0,0,0,0
 </data>
  </layer>
 </map>

@@ -1,11 +1,11 @@
 Building = function(game, x, y, resource) {
-    Phaser.Sprite.call(this, game, x, y, resource);
+    ImageEntity.call(this, game, x, y, resource);
     this.anchor.setTo(0.5, 0.5);
 
     this.lastWavesSentTime = 0;
 };
 
-Building.prototype = Object.create(Phaser.Sprite.prototype);
+Building.prototype = Object.create(ImageEntity.prototype);
 Building.prototype.constructor = Building;
 
 Building.prototype.doTick = function(time) {
