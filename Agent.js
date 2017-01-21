@@ -92,6 +92,7 @@ Agent.prototype.update = function () {
 
     if (this.converted && this.walkingTarget && this.getDistance(this.walkingTarget) < 30) {
         this.game.levelState.convertedAgents++;
+        this.alpha = 0;
         this.died = true;
         // this.kill();
     }
