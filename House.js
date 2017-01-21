@@ -27,7 +27,7 @@ House.prototype.emit = function(){
 House.prototype.doTick = function(time) {
     console.log("HOUSE TICK");
     var time = new Date();
-    if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate) && (this.agentNum >0)) {
+    if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate)) {
         this.emit();
         this.lastWavesSentTime = time;
         this.agentNum --;
