@@ -4,6 +4,8 @@ var PreLoader = {
         var game = window.game;
 
         game.load.image('logo', 'phaser.png');
+
+        game.load.image('initial_dialog', 'assets/initial_dialog.png');
         
         game.load.image('mosque', 'assets/mosque.png');
         game.load.image('synagogue', 'assets/synagogue.png');
