@@ -116,8 +116,12 @@ Agent.prototype.doTick = function (time) {
         var b = this.getRealPossibilities(a, this.directionX, this.directionY);
         var dir = this.possibilitiesToDirection(b);
         if (dir){
-            this.directionX = dir[0];
-            this.directionY = dir[1];
+            var agent = this;
+            window.setTimeout(function(){
+                agent.directionX = dir[0];
+                agent.directionY = dir[1];
+            }, 250);
+
         }
 
 
