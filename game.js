@@ -110,13 +110,13 @@ window.onload = function () {
         this.game.add.existing(this.game.timer);
 
         var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
-        game.add.text(600, 565, "Emitted Agents", style);
-        game.add.text(400, 565, "Converted Agents", style);
-        game.add.text(250, 565, "Lost Agents", style);
+        game.add.text(440, 565, "Emitted", style);
+        game.add.text(320, 565, "Converted", style);
+        game.add.text(250, 565, "Lost", style);
 
-        this.game.emittedAgentsText = game.add.text(670, 540, String(this.game.levelState.emittedAgents), style);
-        this.game.convertedAgentsText = game.add.text(490, 540, String(this.game.levelState.convertedAgents), style);
-        this.game.lostAgentsText = game.add.text(300, 540, String(this.game.levelState.lostAgents), style);
+        this.game.emittedAgentsText = game.add.text(470, 540, String(this.game.levelState.emittedAgents), style);
+        this.game.convertedAgentsText = game.add.text(370, 540, String(this.game.levelState.convertedAgents), style);
+        this.game.lostAgentsText = game.add.text(270, 540, String(this.game.levelState.lostAgents), style);
     }
 
 
