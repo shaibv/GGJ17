@@ -51,6 +51,7 @@ window.onload = function () {
         console.log('update');
         if (this.game.waitingToStart) {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.music.stop();
                 this.game.initialDialog.kill();
                 this.game.waitingToStart = false;
                 this.game.gameStarted = true;
@@ -94,6 +95,9 @@ window.onload = function () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         this.game.add.sprite(0, 0, 'background');
+
+        this.music = this.add.audio('intro_sound',1,true);
+        this.music.play('',0,1,true);
 
         drawBoard(gameLevelData);
         CompletedData = gameLevelObj.getCompleteData();
@@ -173,9 +177,9 @@ window.onload = function () {
      TODO: will move to emitter
      */
     function createAgents() {
-        var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
-        this.game.add.existing(agent);
-        agents.push(agent);
+        // var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
+        // this.game.add.existing(agent);
+        // agents.push(agent);
     }
 
     function updateBuldings() {
