@@ -13,7 +13,7 @@ var gameLevelObj = new GameLevel();
 
 var gameLevelData = gameLevelObj.getData();
 var gameLevelParams = gameLevelObj.getParams();
-var completedData;
+var CompletedData;
 
 var agents = [];
 
@@ -90,8 +90,8 @@ window.onload = function () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         drawBoard(gameLevelData);
-        completedData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, completedData);
+        CompletedData = gameLevelObj.getCompleteData();
+        bankFactory.init(this.game, CompletedData);
         ExitFactory.init(this.game);
         createAgents();
 
