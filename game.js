@@ -32,7 +32,8 @@ window.onload = function () {
         create: create,
         update: update
     });
-
+    var gameContext = this;
+    this.game.getEntityFromTile = getEntityFromTile;
     this.game.waitingToStart = true;
 
     function update() {
@@ -141,13 +142,13 @@ window.onload = function () {
     function getEntityFromTile(type, row, col) {
         var collection = [];
         if (type == 'road') {
-            collection = this.roads;
+            collection = gameContext.roads;
         }
         if (type == 'mosque') {
-            collection = this.mosques;
+            collection = gameContext.mosques;
         }
         if (type == 'agent') {
-            collection = this.agents;
+            collection = gameContext.agents;
         }
         for (var i = 0; i < collection.length; i++) {
             var entity = collection[i];
