@@ -19,6 +19,7 @@ var agents = [];
 var obsticles = [];
 var houses = [];
 var mosques = [];
+var roads = [];
 
 window.onload = function () {
 
@@ -50,7 +51,7 @@ window.onload = function () {
         drawBoard(gameLevelData);
         gameLevelObj.completeData();
         bankFactory.init(this.game);
-        createAgents();
+        //createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
         this.game.add.existing(this.game.initialDialog);
@@ -71,9 +72,8 @@ window.onload = function () {
                     var assetName = 'block';
                 }
                 else {
-                    tileType = tileType -1;
-                    var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType+1);
+                    var assetName = gameLevelObj.getAssetNameById(tileType-1);
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
                     var entity =null;
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
@@ -88,6 +88,10 @@ window.onload = function () {
                             case "Mosque":
                                 entity = new Mosque(this.game, x, y, assetName);
                                 mosques.push(entity);
+                                break;
+                            case "Road":
+                                entity = new Road(this.game, x, y, assetName, tileType);
+                                roads.push(entity);
                                 break;
                         }
                     }
