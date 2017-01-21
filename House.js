@@ -5,7 +5,7 @@ House = function (game, x, y, resource, agents) {
     this.type = "House";
     this.game = game
     this.agents = agents;
-    this.agentRate = Utils.randomInt(6,12);
+    this.agentRate =  1;// Utils.randomInt(6,12);
     Building.call(this, game, x, y, resource);
 }
 
@@ -18,8 +18,7 @@ House.prototype.setAgentNum = function (num) {
 
 House.prototype.emit = function(){
     this.game.levelState.emittedAgents++;
-    console.log(this.getRoad());
-    var agent = new Agent(this.game, this.x + 30, this.y, 3, 1, 0);
+    var agent = new Agent(this.game, this.x +30 , this.y  , 0.3, 1, 0);
     this.game.add.existing(agent);
     agents.push(agent);
 }
