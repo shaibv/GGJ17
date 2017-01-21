@@ -35,6 +35,13 @@ window.onload = function () {
 
     this.game.waitingToStart = true;
 
+    this.game.levelState = {
+        emittedAgents: 0, 
+        lostAgents: 0, 
+        convertedAgents: 0
+    };
+
+
     function update() {
         if (this.game.waitingToStart) {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
