@@ -1,13 +1,15 @@
 var TILE_TYPE_TO_OBJECT = {
-    3: "Obsitcle",
+    3: "Obsticle",
     4: "House",
     5: "Mosque",
     6: "Mosque",
     7: "Mosque",
-    8: "Obsitcle",
-    9: "Obsitcle",
-    10: "Obsitcle"
-}
+    8: "Obsticle",
+    9: "Obsticle",
+    10: "Obsticle",
+    11: "Road",
+    11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",11: "Road",
+};
 
 var data = { "height":8,
     "layers":[
@@ -35,6 +37,92 @@ var data = { "height":8,
             "spacing":0,
             "tilecount":18,
             "tileheight":181,
+            "tileproperties":
+            {
+                "10":
+                {
+                    "height":"2",
+                    "width":"2"
+                },
+                "3":
+                {
+                    "height":"1",
+                    "width":"1"
+                },
+                "4":
+                {
+                    "height":"3",
+                    "width":"1"
+                },
+                "5":
+                {
+                    "height":"2",
+                    "width":1
+                },
+                "6":
+                {
+                    "height":"2",
+                    "width":"2"
+                },
+                "7":
+                {
+                    "height":"1",
+                    "width":"3"
+                },
+                "8":
+                {
+                    "height":"2",
+                    "width":"3"
+                },
+                "9":
+                {
+                    "height":"1",
+                    "width":"1"
+                }
+            },
+            "tilepropertytypes":
+            {
+                "10":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "3":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "4":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "5":
+                {
+                    "height":"string",
+                    "width":"int"
+                },
+                "6":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "7":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "8":
+                {
+                    "height":"string",
+                    "width":"string"
+                },
+                "9":
+                {
+                    "height":"string",
+                    "width":"string"
+                }
+            },
             "tiles":
             {
                 "10":
@@ -115,41 +203,78 @@ var data = { "height":8,
     "tilewidth":60,
     "version":1,
     "width":16
+}
+
+var levelParams = {
+    agentNumber: 100,   // total emitted agents in level 
+    convertTarget: 80,  // minimum agent number to convert in order to pass the level
+    time: 2             // level time in minutes
 };
 
-GameLevel = function() {
+GameLevel = function () {
+
 };
 
 GameLevel.prototype = Object.create(Phaser.Sprite.prototype);
 GameLevel.prototype.constructor = GameLevel;
 
-GameLevel.prototype.getData = function() {
+GameLevel.prototype.getParams = function () {
+    return levelParams;
+}
 
-    var gameData =  data.layers[0]["data"];
+GameLevel.prototype.getData = function () {
+
+    var gameData = data.layers[0]["data"];
 
     var convertedData = [];
-    for (var i =0; i<data.height; i++){
+    for (var i = 0; i < data.height; i++) {
         var row = [];
-        for (var j=0; j<data.width; j++){
-            row.push(gameData[i*(data.width)+j]);
+        for (var j = 0; j < data.width; j++) {
+            row.push(gameData[i * (data.width) + j]);
         }
         convertedData.push(row);
     }
+
     return convertedData;
 };
 
-GameLevel.prototype.getAssetName = function(assetName){
-    return assetName.replace("../assets/", "");
-};
-GameLevel.prototype.getAssetNameNoExtension = function(assetName){
-    var asseetNameWithExtension = assetName.replace("../assets/", "");
-    return asseetNameWithExtension.replace(".png","");
+/**
+ * Complete the data - put -1 where the building is blocking
+ * NOTE THE -1 in the id
+ */
+GameLevel.prototype.completeData = function(){
+    var convertedData = this.getData();
+    var tile = data.tilesets[0]["tileproperties"];
+    for (var i=0; i<data.height; i++){
+        for (var j=0; j<data.width; j++){
+            var id = convertedData[i][j]-1;
+            var numStr = String(id);
+            if (tile[numStr] && id!=0){
+                for(var m=0; m<parseInt(tile[numStr].height); m++){
+                    for (var n=0; n<parseInt(tile[numStr].width); n++){
+                        if (convertedData[i - m][j + n] == 0) {
+                            convertedData[i - m][j + n] = -1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    var a =1;
 };
 
-GameLevel.prototype.getAssetNameById = function(id){
+GameLevel.prototype.getAssetName = function (assetName) {
+    return assetName.replace("../assets/", "");
+};
+GameLevel.prototype.getAssetNameNoExtension = function (assetName) {
+    var asseetNameWithExtension = assetName.replace("../assets/", "");
+    return asseetNameWithExtension.replace(".png", "");
+};
+
+GameLevel.prototype.getAssetNameById = function (id) {
     var tilesets = data.tilesets[0];
     var specificTile = tilesets.tiles[id];
-    if (!specificTile){
+    if (!specificTile) {
         console.log(id);
     }
     var image = specificTile.image;
@@ -160,7 +285,7 @@ GameLevel.prototype.getObjectTypeByTileType = function(tileType) {
     return TILE_TYPE_TO_OBJECT[tileType];
 };
 
-GameLevel.prototype.getAssetsToLoad = function(){
+GameLevel.prototype.getAssetsToLoad = function () {
     var assetsToLoad = [];
     var tilesets = data.tilesets[0];
     var tiles = tilesets.tiles;
@@ -171,5 +296,11 @@ GameLevel.prototype.getAssetsToLoad = function(){
     }
     return assetsToLoad;
 };
+
+GameLevel.prototype.mapTileToType = function (tileType) {
+    var rawData = data.tilesets[0].tiles[tileType].image;
+    rawData = rawData.substring(0, rawData.lastIndexOf('.'));
+   return rawData.substring(rawData.lastIndexOf('/') + 1);
+}
 
 

@@ -7,11 +7,18 @@ var gameOptions = {
     gameHeight: 600,   // game height, in pixels
     tileSize: 60,     // tile size, in pixels
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
-}
+};
 
 var gameLevelObj = new GameLevel();
 
-var gameLevel = gameLevelObj.getData();
+var gameLevelData = gameLevelObj.getData();
+var gameLevelParams = gameLevelObj.getParams();
+
+var agents = [];
+
+var obsticles = [];
+var houses = [];
+var mosques = [];
 
 window.onload = function () {
 
@@ -21,20 +28,34 @@ window.onload = function () {
 
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
-    function update() {
+    this.game.waitingToStart = true;
 
-        updateBuldings();
-        //drawBoard(gameLevel);
+     function update() {
+        if (this.game.waitingToStart) {
+            if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
+                this.game.initialDialog.kill();
+                this.game.waitingToStart = false;
+            }
+        } else {
+            updateBuldings();
+            updateAgents(); 
+        }
+     }
 
-
-    }
 
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        createBuildings(); //temp function
-        drawBoard(gameLevel);
+        drawBoard(gameLevelData);
+        gameLevelObj.completeData();
         bankFactory.init(this.game);
+        createAgents();
+
+        this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
+        this.game.add.existing(this.game.initialDialog);
+
+        this.game.timer = new Timer(this.game, 870, 570, 2000);
+        this.game.add.existing(this.game.timer);
     }
 
 
@@ -51,18 +72,23 @@ window.onload = function () {
                 else {
                     tileType = tileType -1;
                     var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
-                    var entity;
-                    switch (tileObject) {
-                        case "Obsticle":
-                            entity = new House(this.game, x, y, assetName); //temp
-                            break;
-                        case "House":
-                            entity = new House(this.game, x, y, assetName);
-                            break;
-                        case "Mosque":
-                            entity = new Mosque(this.game, x, y, assetName);
-                            break;
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType+1);
+                    var entity =null;
+                    if (tileObject) { //TODO: fix this
+                        switch (tileObject) {
+                            case "Obsticle":
+                                entity = new Obsticle(this.game, x, y, assetName);
+                                obsticles.push(entity);
+                                break;
+                            case "House":
+                                entity = new House(this.game, x, y, assetName, agents);
+                                houses.push(entity);
+                                break;
+                            case "Mosque":
+                                entity = new Mosque(this.game, x, y, assetName);
+                                mosques.push(entity);
+                                break;
+                        }
                     }
                     if (entity) {
                         entity.anchor.set(0,1);
@@ -72,26 +98,32 @@ window.onload = function () {
                         sprite.anchor.set(0,1);
                     }
                 }
-
-
             }
         }
-
     }
 
-    function createBuildings() {
-        this.mosques = [];
-        this.churches = [];
-        this.synagogues = [];
-        this.mosques.push(new Mosque(game, 100, 100, "mosque"));
+    /*
+        TODO: will move to emitter
+     */
+    function createAgents(){
+        var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
+        this.game.add.existing(agent);
+        agents.push(agent);
     }
 
     function updateBuldings() {
-        var buildings = this.mosques.concat(this.churches).concat(this.synagogues);
+        var buildings = mosques.concat(houses);
         for (var i = 0; i < buildings.length; i++) {
             var building = buildings[i];
             building.doTick(new Date());
         }
+    }
+
+    function updateAgents(){
+        for (var i = 0; i<agents.length; i++){
+            agents[i].update();
+        }
+
     }
     
 
