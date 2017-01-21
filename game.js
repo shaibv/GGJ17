@@ -78,10 +78,12 @@ window.onload = function () {
 
     function endGameAsLose() {
         this.game.gameEnded = true;
+        this.game.add.sprite(480, 300, 'you_lost');
     };
 
     function endGameAsWin() {
         this.game.gameEnded = true;
+        this.game.add.sprite(480, 300, 'you_won');
     };
 
     function create() {
