@@ -219,7 +219,7 @@ var data = { "height":8,
 }
 
 var levelParams = {
-    agentNumber: 100,                   // total emitted agents in level 
+    totalAgentNumber: 100,              // total  agents to emit in level 
     convertTarget: 80,                  // minimum agent number to convert in order to pass the level
     time: {minutes: 2, seconds: 59}     // level time - minutes and seconds
 };

@@ -53,9 +53,30 @@ window.onload = function () {
         } else {
             updateBuldings();
             updateAgents();
+            this.checkIfGameEnded();
         }
-    }
+    };
 
+    checkIfGameEnded: fucntion() {
+        var totalAgentNumber = gameLevelParams.totalAgentNumber;
+        var convertTarget = gameLevelParams.convertTarget;
+        var lostAgents = this.game.levelState.lostAgents;
+        var convertedAgents = this.game.levelState.convertedAgents;
+        if (lostAgents > totalAgentNumber - convertTarget) {
+            this.endGameAsLose();
+        } 
+        if (convertedAgents > convertTarget) {
+            this.endGameAsWin();
+        }
+    };
+
+    function endGameAsLose() {
+
+    };
+
+    function endGameAsWin() {
+
+    };
 
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -63,7 +84,7 @@ window.onload = function () {
         drawBoard(gameLevelData);
         this.gameData = gameLevelObj.getCompleteData();
         bankFactory.init(this.game, this.gameData);
-        ExitFactory.init(this.game);
+        //ExitFactory.init(this.game);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
@@ -106,7 +127,7 @@ window.onload = function () {
                                 mosques.push(entity);
                                 break;
                             case "Road":
-                                entity = new Road(this.game, x, y, assetName, tileType);
+                                entity = new Road(this.game, x, y, assetName, tileType, i, j);
                                 roads.push(entity);
                                 break;
                         }
