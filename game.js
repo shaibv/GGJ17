@@ -31,7 +31,6 @@ window.onload = function () {
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        createBuildings(); //temp function
         drawBoard(gameLevel);
         gameLevelObj.completeData();
         bankFactory.init(this.game);
@@ -41,6 +40,9 @@ window.onload = function () {
 
 
     function drawBoard(board) {
+        var obsticles = [];
+        var houses = [];
+        var mosques = [];
         for (var i = 0; i < board.length; i++) {
             var row = board[i];
             for (var j = 0; j < row.length; j++) {
@@ -59,12 +61,15 @@ window.onload = function () {
                         switch (tileObject) {
                             case "Obsticle":
                                 entity = new Obsticle(this.game, x, y, assetName);
+                                obsticles.push(entity);
                                 break;
                             case "House":
                                 entity = new House(this.game, x, y, assetName, agents);
+                                houses.push(entity);
                                 break;
                             case "Mosque":
                                 entity = new Mosque(this.game, x, y, assetName);
+                                mosques.push(entity);
                                 break;
                         }
                     }
@@ -80,13 +85,6 @@ window.onload = function () {
         }
     }
 
-    function createBuildings() {
-        this.mosques = [];
-        this.churches = [];
-        this.synagogues = [];
-        this.mosques.push(new Mosque(game, 100, 100, "mosque"));
-    }
-
     /*
         TODO: will move to emitter
      */
@@ -97,7 +95,7 @@ window.onload = function () {
     }
 
     function updateBuldings() {
-        var buildings = this.mosques.concat(this.churches).concat(this.synagogues);
+        var buildings = this.mosques.concat(this.houses);
         for (var i = 0; i < buildings.length; i++) {
             var building = buildings[i];
             building.doTick(new Date());
