@@ -53,9 +53,30 @@ window.onload = function () {
         } else {
             updateBuldings();
             updateAgents();
+            this.checkIfGameEnded();
         }
-    }
+    };
 
+    checkIfGameEnded: fucntion() {
+        var totalAgentNumber = gameLevelParams.totalAgentNumber;
+        var convertTarget = gameLevelParams.convertTarget;
+        var lostAgents = this.game.levelState.lostAgents;
+        var convertedAgents = this.game.levelState.convertedAgents;
+        if (lostAgents > totalAgentNumber - convertTarget) {
+            this.endGameAsLose();
+        } 
+        if (convertedAgents > convertTarget) {
+            this.endGameAsWin();
+        }
+    };
+
+    function endGameAsLose() {
+
+    };
+
+    function endGameAsWin() {
+
+    };
 
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
