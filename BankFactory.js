@@ -70,7 +70,7 @@ function initBanks(game, gameBoard) {
         sprite.x = fixedPosition.x;
         sprite.y = fixedPosition.y;
         var mosque = new Mosque(this.game, fixedPosition.x, fixedPosition.y, sprite.key);
-        mosque.anchor.set(0, 1);
+        mosque.anchor.set(0.5, 0);
         mosques.push(mosque);
         game.add.existing(mosque);
         sprite.kill();
