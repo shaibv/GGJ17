@@ -145,6 +145,10 @@ Agent.prototype.doTick = function (time) {
         this.directionY = this.GetCurrentStrategy(this.x, this.y,target)[1];
     }
 
+    if (this.converted){
+        this.speed = 0.3;
+    }
+
     this.x = this.x + (this.speed * this.directionX);
     this.y = this.y + (this.speed * this.directionY);
 
