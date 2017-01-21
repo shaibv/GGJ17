@@ -18,14 +18,12 @@ House.prototype.setAgentNum = function (num) {
 }
 
 House.prototype.emit = function(){
-    console.log("HOUSE SENDING AGENTS");
     var agent = new Agent(this.game, this.x + 30, this.y, 3, 0, 1);
     this.game.add.existing(agent);
     agents.push(agent);
 }
 
 House.prototype.doTick = function(time) {
-    console.log("HOUSE TICK");
     var time = new Date();
     if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate)) {
         this.emit();
