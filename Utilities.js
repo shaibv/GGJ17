@@ -50,10 +50,10 @@ var Utils = {
         });
 
         var roads = roadsTiles.map(function(tile){
-            return getEntityFromTile('road',tile.row,tile.col);
+            return this.game.getEntityFromTile('road',tile.row,tile.col);
         });
 
-        return road;
+        return roads;
 
     }
 
