@@ -242,7 +242,7 @@ GameLevel.prototype.getData = function () {
  * Complete the data - put -1 where the building is blocking
  * NOTE THE -1 in the id
  */
-GameLevel.prototype.completeData = function(){
+GameLevel.prototype.getCompleteData = function(){
     var convertedData = this.getData();
     var tile = data.tilesets[0]["tileproperties"];
     for (var i=0; i<data.height; i++){
@@ -260,7 +260,7 @@ GameLevel.prototype.completeData = function(){
             }
         }
     }
-    var a =1;
+    return convertedData;
 };
 
 GameLevel.prototype.getAssetName = function (assetName) {
