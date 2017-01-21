@@ -5,7 +5,7 @@ House = function (game, x, y, resource, agents) {
     this.type = "House";
     this.game = game
     this.agents = agents;
-    this.agentRate = 5;
+    this.agentRate = Utils.randomInt(6,12);
     Building.call(this, game, x, y, resource);
 }
 
