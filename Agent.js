@@ -24,7 +24,7 @@ function getCellByPos(x, y) {
 
 
 function Agent(game, x, y, speedX, speedY, direction) {
-    Phaser.Sprite.call(this, game, x, y, "agent");
+    ImageEntity.call(this, game, x, y, "agent");
     this.x = x;
     this.y = y;
     this.speedX = speedX;  // measured in pixels per tick
@@ -34,7 +34,7 @@ function Agent(game, x, y, speedX, speedY, direction) {
 
     this.anchor.setTo(0.5, 0.5);
 }
-Agent.prototype = Object.create(Phaser.Sprite.prototype);
+Agent.prototype = Object.create(ImageEntity.prototype);
 Agent.prototype.constructor = Agent;
 
 
