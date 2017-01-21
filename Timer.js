@@ -11,7 +11,7 @@ Timer = function(game, x, y, totalTime) {
 	
 	var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
 	var dotdot = game.add.text(0, -12, ":", style);
-    this.minsText = game.add.text(-32, -12, String(this.currentTime.minutes), style);
+    this.minsText = game.add.text(-22, -12, String(this.currentTime.minutes), style);
     this.secText = game.add.text(13, -12, String(this.currentTime.seconds), style);
 
     this.addChild(dotdot);
