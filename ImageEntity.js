@@ -5,6 +5,3 @@ ImageEntity = function(game, x, y, resource) {
 
 ImageEntity.prototype = Object.create(Phaser.Sprite.prototype);
 ImageEntity.prototype.constructor = ImageEntity;
-
-ImageEntity.prototype.doTick = function(time) {
-};
