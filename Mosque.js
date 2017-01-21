@@ -1,10 +1,20 @@
 Mosque = function(game, x, y, resource) {
 	this.type = "Mosque";
+    this.soundPlayed = false;
 	Building.call(this, game, x, y, resource);
 };
 
 Mosque.prototype = Object.create(Building.prototype);
 Mosque.prototype.constructor = Mosque;
+
+Building.prototype.doTick = function(time) {
+    var time = new Date();
+    var delta = 1.6;
+    if ((time/1000 - this.lastWavesSentTime / 1000) > delta) {
+        this.emit();
+        this.lastWavesSentTime = time;
+    }
+};
 
 Mosque.prototype.emit = function() {
 	var smallWave = this.game.make.sprite(this.width/2, -this.height/2, "mosque_wave_small");
@@ -18,16 +28,22 @@ Mosque.prototype.emit = function() {
     setInterval(function() {
     	smallWaveAnim.start();
     }, 160);
-    var sound = game.add.audio('mosque_sound1');
-    sound.play();
+    if (!this.soundPlayed) {
+        var sound = game.add.audio('mosque_sound1');
+        sound.play();
+        this.soundPlayed = true;
+    }
+
 };
 
 Mosque.prototype.createWaveAnimation = function(waveEntity) {
 	waveEntity.scale.setTo(0.0, 0.0);
 	this.addChild(waveEntity);
 	var anim = this.game.add.tween(waveEntity.scale);
-	anim.to({ x: 1.0, y: 1.0 }, 1000);
-	var loopCount = 1;
+    // anim.loop = true;
+    var scaleTarget = this.key == "mosque1" ? 0.5 : 1.0;
+	anim.to({ x: scaleTarget, y: scaleTarget }, 1000);
+	// var loopCount = 1;
 	var mosque = this;
 
 	var animationStarted = function() {
@@ -38,14 +54,10 @@ Mosque.prototype.createWaveAnimation = function(waveEntity) {
     };
     var animationLooped = function() {
     	loopCount = Math.max(0, loopCount - 1);
-    	if (loopCount == 0) {
-    		anim.loop = false;
-    	}
     }
     anim.onStart.add(animationStarted, this);
-    anim.onLoop.add(animationLooped, this);
+    // anim.onLoop.add(animationLooped, this);
     anim.onComplete.add(animationStopped, this);
-    anim.loop = true;
     return anim;
 
 
