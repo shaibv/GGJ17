@@ -59,6 +59,7 @@ window.onload = function () {
             if (!this.game.gameEnded) {
                 updateBuldings();
                 updateAgents();
+                updateCounters();
                 checkIfGameEnded();
             }
         }
@@ -181,6 +182,12 @@ window.onload = function () {
             agents[i].update();
         }
 
+    }
+
+    function updateCounters() {
+        this.emittedAgentsText.setText(String(this.game.levelState.emittedAgents));
+        this.convertedAgentsText.setText(String(this.game.levelState.convertedAgents));   
+        this.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
     }
 
     function getEntityFromTile(type, row, col) {
