@@ -19,6 +19,7 @@ function initBanks(game, gameBoard) {
         if (draggableBankCounter[type]) {
             initDraggable(currentSprite.x, currentSprite.y, type, draggableBankCounter[type]);
         } else {
+            currentSprite.opacity = 0.3;
             currentSprite.inputEnabled = false;
         }
     }
