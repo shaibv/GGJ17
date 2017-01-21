@@ -24,7 +24,7 @@ function getCellByPos(x, y) {
 
 
 function Agent(game, x, y, speedX, speedY, direction) {
-    ImageEntity.call(this, game, x, y, "agent");
+    ImageEntity.call(this, game, x, y, "agent_front");
     this.x = x;
     this.y = y;
     this.speedX = speedX;  // measured in pixels per tick

@@ -11,7 +11,10 @@ var PreLoader = {
         game.load.image('block', 'assets/blue_tile.png');
         game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
-        game.load.image('agent', 'assets/person_20_front.png');
+        game.load.image('agent_front', 'assets/person_20_front.png');
+        game.load.image('agent_back', 'assets/person_20_back.png');
+        game.load.image('agent_left', 'assets/person_20_left.png');
+        game.load.image('agent_right', 'assets/person_20_right.png');
 
         game.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
 

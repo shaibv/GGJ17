@@ -15,6 +15,10 @@ var gameLevel = gameLevelObj.getData();
 
 var agents = [];
 
+var obsticles = [];
+var houses = [];
+var mosques = [];
+
 window.onload = function () {
 
     //  Note that this html file is set to pull down Phaser 2.5.0 from the JS Delivr CDN.
@@ -40,9 +44,6 @@ window.onload = function () {
 
 
     function drawBoard(board) {
-        var obsticles = [];
-        var houses = [];
-        var mosques = [];
         for (var i = 0; i < board.length; i++) {
             var row = board[i];
             for (var j = 0; j < row.length; j++) {
@@ -95,7 +96,7 @@ window.onload = function () {
     }
 
     function updateBuldings() {
-        var buildings = this.mosques.concat(this.houses);
+        var buildings = mosques.concat(houses);
         for (var i = 0; i < buildings.length; i++) {
             var building = buildings[i];
             building.doTick(new Date());
