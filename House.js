@@ -16,10 +16,12 @@ House.prototype.setAgentNum = function (num) {
 }
 
 House.prototype.emit = function(){
-    var agent = new Agent(this.x + 30, this.y, 3, 0, 1);
+    //var agent = new Agent(this.x + 30, this.y, 3, 0, 1);
+    console.log("HOUSE SENDING AGENTS");
 }
 
 House.prototype.doTick = function(time) {
+    console.log("HOUSE TICK");
     var time = new Date();
     if (((time/1000 - this.lastWavesSentTime / 1000) > this.agentRate) && (this.agentNum >0)) {
         this.emit();
