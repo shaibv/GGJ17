@@ -19,6 +19,7 @@ var agents = [];
 var obsticles = [];
 var houses = [];
 var mosques = [];
+var roads = [];
 
 window.onload = function () {
 
@@ -28,20 +29,10 @@ window.onload = function () {
 
     this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
 
-    this.game.waitingToStart = true;
-
-     function update() {
-        if (this.game.waitingToStart) {
-            if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
-                this.game.initialDialog.kill();
-                this.game.waitingToStart = false;
-            }
-        } else {
-            updateBuldings();
-            updateAgents(); 
-        }
-     }
-
+    function update() {
+        updateBuldings();
+        //updateAgents();
+    }
 
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
@@ -49,13 +40,8 @@ window.onload = function () {
         drawBoard(gameLevelData);
         gameLevelObj.completeData();
         bankFactory.init(this.game);
-        createAgents();
+        //createAgents();
 
-        this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
-        this.game.add.existing(this.game.initialDialog);
-
-        this.game.timer = new Timer(this.game, 870, 570, 2000);
-        this.game.add.existing(this.game.timer);
     }
 
 
@@ -70,9 +56,8 @@ window.onload = function () {
                     var assetName = 'block';
                 }
                 else {
-                    tileType = tileType -1;
-                    var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType+1);
+                    var assetName = gameLevelObj.getAssetNameById(tileType-1);
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
                     var entity =null;
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
@@ -87,6 +72,10 @@ window.onload = function () {
                             case "Mosque":
                                 entity = new Mosque(this.game, x, y, assetName);
                                 mosques.push(entity);
+                                break;
+                            case "Road":
+                                entity = new Road(this.game, x, y, assetName, tileType);
+                                roads.push(entity);
                                 break;
                         }
                     }
@@ -106,7 +95,7 @@ window.onload = function () {
         TODO: will move to emitter
      */
     function createAgents(){
-        var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
+        var agent = new Agent(this.game, 300 + 30, 10, 0, 2, 1);
         this.game.add.existing(agent);
         agents.push(agent);
     }
@@ -121,7 +110,7 @@ window.onload = function () {
 
     function updateAgents(){
         for (var i = 0; i<agents.length; i++){
-            agents[i].update();
+            agents[i].move();
         }
 
     }
