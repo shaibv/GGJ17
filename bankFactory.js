@@ -56,12 +56,12 @@ function init(game, gameBoard) {
 
     function checkDrop(sprite){
         var cell = Utils.locToTile(sprite.x,sprite.y);
-        return !!this.gameLevel.getData()[cell[1],cell[0]];
+        return !!this.gameLevel.getData()[cell.i,cell.j];
 
     }
     function snapDrop(sprite){
         var cell = Utils.locToTile(sprite.x,sprite.y);
-        var fixedPosition =  Utils.tileToLoc(cell[1],cell[0]);
+        var fixedPosition =  Utils.tileToLoc(cell.i,cell.j);
         sprite.x =  fixedPosition.x;
         sprite.y =  fixedPosition.y;
 

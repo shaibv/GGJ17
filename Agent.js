@@ -23,14 +23,19 @@ function getCellByPos(x, y) {
 
 
 
-function Agent(x, y, speedX, speedY, direction) {
+function Agent(game, x, y, speedX, speedY, direction) {
+    ImageEntity.call(this, game, x, y, "agent");
     this.x = x;
     this.y = y;
     this.speedX = speedX;  // measured in pixels per tick
     this.speedY = speedY;
     this.direction = direction;
     this.currCell = getCellByPos(this.x, this.y);
+
+    this.anchor.setTo(0.5, 0.5);
 }
+Agent.prototype = Object.create(ImageEntity.prototype);
+Agent.prototype.constructor = Agent;
 
 
 
@@ -48,6 +53,8 @@ Agent.prototype.move = function() {
         this.direction = GetCurrentStrategy();
     }
 };
+
+
 
 
 

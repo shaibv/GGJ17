@@ -11,7 +11,8 @@ var PreLoader = {
         game.load.image('block', 'assets/blue_tile.png');
         game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
-        
+        game.load.image('agent', 'assets/person_20_front.png');
+
         game.load.audio('mosque_sound1', ['assets/mosque_sound1.mp3']);
 
         var assetsToLoad = gameLevelObj.getAssetsToLoad();
