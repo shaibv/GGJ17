@@ -51,8 +51,14 @@ var Agent = function (game, x, y, speed, directionX, directionY) {
 Agent.prototype = Object.create(ImageEntity.prototype);
 Agent.prototype.constructor = Agent;
 
-Agent.prototype.update = function () {
-    if (this.startedAnimation) {
+
+Agent.prototype.getCell = function () {
+    return this.currCell
+};
+
+
+Agent.prototype.doTick = function (time) {
+        if (this.startedAnimation) {
         return;
     }
 
@@ -96,18 +102,6 @@ Agent.prototype.update = function () {
         this.died = true;
         // this.kill();
     }
-
-
-
-};
-
-Agent.prototype.getCell = function () {
-    return this.currCell
-};
-
-
-Agent.prototype.doTick = function (time) {
-    this.update();
 };
 
 Agent.prototype.getDistance = function(otherEntity) {
