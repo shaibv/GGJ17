@@ -65,12 +65,14 @@ function initBanks(game, gameBoard) {
     }
 
     function snapDrop(sprite) {
-        var cell = Utils.locToTile(sprite.x, sprite.y);
+        var xPos = Math.round(sprite.x/gameOptions.tileSize) * gameOptions.tileSize ;
+        var yPos = Math.round(sprite.y/gameOptions.tileSize) * gameOptions.tileSize;
+        var cell = Utils.locToTile(xPos, yPos +  2 * gameOptions.tileSize);
         var fixedPosition = Utils.tileToLoc(cell.col, cell.row);
-        sprite.x = fixedPosition.x;
-        sprite.y = fixedPosition.y;
+        sprite.x = fixedPosition.x ;
+        sprite.y = fixedPosition.y ;
         var mosque = new Mosque(this.game, fixedPosition.x, fixedPosition.y, sprite.key);
-        mosque.anchor.set(0.5, 0);
+        mosque.anchor.set(0, 1);
         mosques.push(mosque);
         game.add.existing(mosque);
         sprite.kill();
