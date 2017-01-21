@@ -58,10 +58,12 @@ Agent.prototype.update = function () {
 
     if (isInRange(this)) {
         var target = isInRange(this);
+
+        if (!this.added){
+            this.added = true;
+            this.addChild(game.make.sprite(-17, -28, "aura"));
+        }
         this.converted = true;
-
-
-
     }
     this.directionX = GetCurrentStrategy(this.x, this.y,target)[0];
     this.directionY = GetCurrentStrategy(this.x, this.y,target)[1];
