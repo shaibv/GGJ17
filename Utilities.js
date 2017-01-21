@@ -55,6 +55,11 @@ var Utils = {
 
         return roads;
 
+    },
+
+    randomInt: function(from, to) {
+        var range = till - from + 1;
+        return Math.floor(from + this.random() * range);
     }
 
 
