@@ -58,7 +58,7 @@ window.onload = function () {
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
                             case "Obsticle":
-                                entity = new House(this.game, x, y, assetName, agents); //temp
+                                entity = new Obsticle(this.game, x, y, assetName, agents);
                                 break;
                             case "House":
                                 entity = new House(this.game, x, y, assetName, agents);
