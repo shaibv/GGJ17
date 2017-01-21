@@ -23,7 +23,7 @@ Mosque.prototype.emit = function() {
 	smallWave.anchor.setTo(0.5, 0.5);
 
     var bigWaveAnim = this.createWaveAnimation(bigWave);
-    var smallWaveAnim = this.createWaveAnimation(smallWave);
+    var smallWaveAnim = this.createWaveAnimation(smallWave, true);
     bigWaveAnim.start();
     setInterval(function() {
     	smallWaveAnim.start();
@@ -36,13 +36,13 @@ Mosque.prototype.emit = function() {
 
 };
 
-Mosque.prototype.createWaveAnimation = function(waveEntity) {
+Mosque.prototype.createWaveAnimation = function(waveEntity, shorter) {
 	waveEntity.scale.setTo(0.0, 0.0);
 	this.addChild(waveEntity);
 	var anim = this.game.add.tween(waveEntity.scale);
     // anim.loop = true;
     var scaleTarget = this.key == "mosque1" ? 0.5 : 1.0;
-	anim.to({ x: scaleTarget, y: scaleTarget }, 1000);
+	anim.to({ x: scaleTarget, y: scaleTarget }, shorter ? 840 : 1000);
 	// var loopCount = 1;
 	var mosque = this;
 
@@ -50,6 +50,7 @@ Mosque.prototype.createWaveAnimation = function(waveEntity) {
     	waveEntity.scale.setTo(0.0, 0.0);
     };
 	var animationStopped = function() {
+        waveEntity.scale.setTo(0.0, 0.0);
     	mosque.removeChild(waveEntity);
     };
     var animationLooped = function() {
