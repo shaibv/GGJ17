@@ -199,7 +199,7 @@ window.onload = function () {
 
     function updateAgents() {
         for (var i = 0; i < agents.length; i++) {
-            agents[i].update();
+            agents[i].doTick();
         }
 
     }
