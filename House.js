@@ -34,8 +34,7 @@ House.prototype.doTick = function(time) {
 }
 
 House.prototype.getRoad = function () {
-    var cell = Utils.locToTile(this.x, this.y);
-    var roads = this.game.getEntityFromTile("road",cell.row,cell.col);
+    var roads = Utils.getAdjacentRoads(Utils.locToTile(this.x, this.y));
     return roads;
 }
 
