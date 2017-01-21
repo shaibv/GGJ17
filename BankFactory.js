@@ -17,6 +17,8 @@ function initBanks(game, gameBoard) {
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
+            var sound = game.add.audio('drop');
+            sound.play();
             initDraggable(currentSprite.x, currentSprite.y, type, draggableBankCounter[type]);
         } else {
             currentSprite.alpha = 0.5;
@@ -77,6 +79,8 @@ function initBanks(game, gameBoard) {
         mosque.anchor.set(0, 1);
         mosques.push(mosque);
         game.add.existing(mosque);
+        var sound = game.add.audio('drop');
+        sound.play();
         sprite.kill();
 
     }
