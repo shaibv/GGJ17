@@ -47,8 +47,8 @@ window.onload = function () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         drawBoard(gameLevelData);
-        gameLevelObj.completeData();
-        bankFactory.init(this.game);
+        this.gameData = gameLevelObj.getCompleteData();
+        bankFactory.init(this.game,this.gameData);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
