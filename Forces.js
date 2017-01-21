@@ -41,7 +41,7 @@ function isInRange(agent){
             treshhold = 200;
         }
 
-        var distance = Math.sqrt(Math.pow(mosque.x - agent.x, 2) + Math.pow(mosque.y - agent.y, 2));
+        var distance = Math.sqrt(Math.pow(mosque.x+(mosque.width/2) - agent.x, 2) + Math.pow(mosque.y-(mosque.height/2) - agent.y, 2));
         if (distance < treshhold) {
             return mosque;
         }

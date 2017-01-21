@@ -75,6 +75,14 @@ var Utils = {
 
     randomInt: function(from, to) {
         return Math.random() * (to - from) + from;
+    },
+
+    getRoadPossibilities: function(tile){
+        var entity = getEntityFromTile('road',tile.row,tile.col);
+        if (!entity){
+            return [1,1,1,1];
+        }
+        return entity.getDirection();
     }
 
 

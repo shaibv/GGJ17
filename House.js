@@ -18,7 +18,7 @@ House.prototype.setAgentNum = function (num) {
 
 House.prototype.emit = function(){
     this.game.levelState.emittedAgents++;
-    var agent = new Agent(this.game, this.x +30 , this.y  , 0.3, 1, 0);
+    var agent = new Agent(this.game, this.x +30 , this.y  , 0.3, 0, 1);
     this.game.add.existing(agent);
     agents.push(agent);
 }

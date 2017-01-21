@@ -210,25 +210,24 @@ window.onload = function () {
         this.game.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
     }
 
-    function getEntityFromTile(type, row, col) {
-        var collection = [];
-        if (type == 'road') {
-            collection = roads;
-        }
-        if (type == 'mosque') {
-            collection = mosques;
-        }
-        if (type == 'agent') {
-            collection = agents;
-        }
-        for (var i = 0; i < collection.length; i++) {
-            var entity = collection[i];
-            if (entity.row == row && entity.col == col) {
-                return entity;
-            }
-        }
-        return null;
-    }
-
-
 };
+
+function getEntityFromTile(type, row, col) {
+    var collection = [];
+    if (type == 'road') {
+        collection = roads;
+    }
+    if (type == 'mosque') {
+        collection = mosques;
+    }
+    if (type == 'agent') {
+        collection = agents;
+    }
+    for (var i = 0; i < collection.length; i++) {
+        var entity = collection[i];
+        if (entity.row == row && entity.col == col) {
+            return entity;
+        }
+    }
+    return null;
+}

@@ -17,7 +17,8 @@ var TILE_TYPE_TO_OBJECT = {
     18: "Road",
     19: "Road",
     20: "Road",
-    21: "Road"
+    21: "Road",
+    22: "Road"
 };
 
 var data = { "height":8,
