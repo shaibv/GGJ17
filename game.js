@@ -48,6 +48,7 @@ window.onload = function () {
 
 
     function update() {
+        console.log('update');
         if (this.game.waitingToStart) {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
                 this.game.initialDialog.kill();
@@ -60,7 +61,7 @@ window.onload = function () {
                 updateBuldings();
                 updateAgents();
                 updateCounters();
-                checkIfGameEnded();
+                //checkIfGameEnded();
             }
         }
     }
