@@ -18,6 +18,7 @@ House.prototype.setAgentNum = function (num) {
 }
 
 House.prototype.emit = function(){
+    console.log(this.getRoad());
     var agent = new Agent(this.game, this.x + 30, this.y, 3, 1, 0);
     this.game.add.existing(agent);
     agents.push(agent);
@@ -30,6 +31,12 @@ House.prototype.doTick = function(time) {
         this.lastWavesSentTime = time;
         this.agentNum --;
     }
+}
+
+House.prototype.getRoad = function () {
+    var cell = Utils.locToTile(this.x, this.y);
+    var roads = this.game.getEntityFromTile("road",cell.row,cell.col);
+    return roads;
 }
 
 
