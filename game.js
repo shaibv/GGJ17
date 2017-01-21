@@ -84,11 +84,15 @@ window.onload = function () {
     function endGameAsLose() {
         this.game.gameEnded = true;
         this.game.add.sprite(480, 300, 'you_lost');
+        this.music = this.add.audio('end_sound',1,true);
+        this.music.play('',0,1,true);
     };
 
     function endGameAsWin() {
         this.game.gameEnded = true;
         this.game.add.sprite(480, 300, 'you_won');
+        this.music = this.add.audio('end_sound',1,true);
+        this.music.play('',0,1,true);
     };
 
     function create() {

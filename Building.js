@@ -10,7 +10,7 @@ Building.prototype.constructor = Building;
 
 Building.prototype.doTick = function(time) {
 	var time = new Date();
-	var delta = Utils.randomInt(8,12);
+	var delta = Utils.randomInt(12,16);
 	if ((time/1000 - this.lastWavesSentTime / 1000) > delta) {
 		this.emit();
 		this.lastWavesSentTime = time;
