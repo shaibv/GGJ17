@@ -45,7 +45,7 @@ var Utils = {
         var roadsTiles = adjacentTiles.filter(function (roadTile) {
             var col = roadTile[0];
             var row = roadTile[1];
-            var value =  CompleteData[row] ? CompleteData[row][col] : 0;
+            var value =  CompletedData[row] ? CompletedData[row][col] : 0;
             return value >= Utils.minRoad && value <= Utils.minRoad;
         });
 

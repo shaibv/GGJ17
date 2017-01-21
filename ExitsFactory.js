@@ -11,13 +11,13 @@ var exists = [];
 
 
 function init(game, gameBoard) {
-   var entity = new Mosque(game, -50, 300, 'blue_tile');
+   var entity = new Mosque(game, -50, 300, 'church');
     exists.push(entity);
-    entity = new Mosque(game, 1010, 300, 'blue_tile');
+    entity = new Mosque(game, 1010, 300, 'church');
     exists.push(entity);
-    entity = new Mosque(game, 480, -50, 'blue_tile');
+    entity = new Mosque(game, 480, -50, 'church');
     exists.push(entity);
-    entity = new Mosque(game, 480, 650, 'blue_tile');
+    entity = new Mosque(game, 480, 650, 'church');
     exists.push(entity);
 
 }
