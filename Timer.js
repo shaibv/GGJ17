@@ -12,8 +12,8 @@ Timer = function(game, x, y, totalTime) {
 	
 	var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
 	var dotdot = game.add.text(0, -12, ":", style);
-    this.minsText = game.add.text(-22, -12, String(this.currentTime.minutes), style);
-    this.secText = game.add.text(13, -12, String(this.currentTime.seconds), style);
+    this.minsText = game.add.text(-30, -13, "0"+String(this.currentTime.minutes), style);
+    this.secText = game.add.text(13, -13, String(this.currentTime.seconds), style);
 
     this.addChild(dotdot);
     this.addChild(this.minsText);
@@ -60,6 +60,6 @@ Timer.prototype.start = function() {
 };
 
 Timer.prototype.update = function() {
-	this.minsText.setText(String(this.currentTime.minutes));
+	this.minsText.setText("0"+String(this.currentTime.minutes));
 	this.secText.setText(String(this.currentTime.seconds));
 };
