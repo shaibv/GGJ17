@@ -37,10 +37,9 @@ Timer.prototype.updateTime = function(time) {
 
 Timer.prototype.start = function() {
 	var timer = this;
-	var done = false;
 	setInterval(function() {
 		var minutesReduced = false;
-		if (!done && (timer.currentTime.minutes > 0 || timer.currentTime.seconds > 0)) {
+		if (timer.currentTime.minutes > 0 || timer.currentTime.seconds > 0) {
 			timer.currentTime.seconds--;
 			if (timer.currentTime.seconds == 0) {
 				if (timer.currentTime.minutes > 0) {
