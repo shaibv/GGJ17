@@ -7,8 +7,8 @@ var ExitFactory = {
 }
 
 
-var exists = {};
-var ExitFactory  = this;
+var exists = [];
+
 
 function init(game, gameBoard) {
    var entity = new Mosque(game, -50, 300, 'blue_tile');

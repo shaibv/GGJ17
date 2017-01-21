@@ -2,6 +2,9 @@
  * Created by adi on 1/20/2017.
  */
 var Utils = {
+    maxRoad: 21,
+    minRoad: 12,
+
     tileToLoc: function (col, row) {
         if (col < 0)
             col = 0;
@@ -30,5 +33,29 @@ var Utils = {
         if (y > gameOptions.gameHeight)
             y = gameOptions.gameHeight;
         return {'col': Math.floor(x / gameOptions.tileSize), 'row': Math.floor(y / gameOptions.tileSize)};
+    },
+
+    getAdjacentRoads: function (road) {
+        var adjacentTiles = [
+            [road.col, road.row - 1],
+            [road.col, road.row + 1],
+            [road.col - 1, road.row],
+            [road.col + 1, road.row]
+        ];
+        var roadsTiles = adjacentTiles.filter(function (roadTile) {
+            var col = roadTile[0];
+            var row = roadTile[1];
+            var value =  CompleteData[row] ? CompleteData[row][col] : 0;
+            return value >= Utils.minRoad && value <= Utils.minRoad;
+        });
+
+        var roads = roadsTiles.map(function(tile){
+            return getEntityFromTile('road',tile.row,tile.col);
+        });
+
+        return road;
+
     }
+
+
 }

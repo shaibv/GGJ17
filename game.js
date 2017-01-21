@@ -13,6 +13,7 @@ var gameLevelObj = new GameLevel();
 
 var gameLevelData = gameLevelObj.getData();
 var gameLevelParams = gameLevelObj.getParams();
+var completedData;
 
 var agents = [];
 
@@ -61,7 +62,7 @@ window.onload = function () {
                 checkIfGameEnded();
             }
         }
-    };
+    }
 
     function checkIfGameEnded() {
         var totalAgentNumber = gameLevelParams.totalAgentNumber;
@@ -70,11 +71,12 @@ window.onload = function () {
         var convertedAgents = this.game.levelState.convertedAgents;
         if (lostAgents > totalAgentNumber - convertTarget) {
             this.endGameAsLose();
-        } 
+        }
         if (convertedAgents > convertTarget) {
             this.endGameAsWin();
         }
-    };
+    }
+    ;
 
     function endGameAsLose() {
         this.game.gameEnded = true;
@@ -90,9 +92,9 @@ window.onload = function () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         drawBoard(gameLevelData);
-        this.gameData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, this.gameData);
-        //ExitFactory.init(this.game);
+        completedData = gameLevelObj.getCompleteData();
+        bankFactory.init(this.game, completedData);
+        ExitFactory.init(this.game);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
