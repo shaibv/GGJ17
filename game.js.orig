@@ -59,6 +59,7 @@ window.onload = function () {
             if (!this.game.gameEnded) {
                 updateBuldings();
                 updateAgents();
+                updateCounters();
                 checkIfGameEnded();
             }
         }
@@ -69,7 +70,7 @@ window.onload = function () {
         var convertTarget = gameLevelParams.convertTarget;
         var lostAgents = this.game.levelState.lostAgents;
         var convertedAgents = this.game.levelState.convertedAgents;
-        if (lostAgents > totalAgentNumber - convertTarget) {
+        if (this.game.timer.isTimeOver() || lostAgents > totalAgentNumber - convertTarget) {
             this.endGameAsLose();
         }
         if (convertedAgents > convertTarget) {
@@ -92,14 +93,8 @@ window.onload = function () {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
         drawBoard(gameLevelData);
-<<<<<<< Updated upstream
         CompletedData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, CompletedData);
-=======
-        completedData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game, completedData);
-        Utils.completedData = Complete
->>>>>>> Stashed changes
+        BankFactory.init(this.game, CompletedData);
         ExitFactory.init(this.game);
         createAgents();
 
@@ -111,6 +106,15 @@ window.onload = function () {
             seconds: gameLevelParams.time.seconds
         });
         this.game.add.existing(this.game.timer);
+
+        var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
+        // game.add.text(550, 575, "Emitted Agents", style);
+        // game.add.text(500, 575, "Converted Agents", style);
+        // game.add.text(450, 575, "Lost Agents", style);
+
+        this.game.emittedAgentsText = game.add.text(550, 575, String(this.game.levelState.emittedAgents), style);
+        this.game.convertedAgentsText = game.add.text(500, 575, String(this.game.levelState.convertedAgents), style);
+        this.game.lostAgentsText = game.add.text(450, 575, String(this.game.levelState.lostAgents), style);
     }
 
 
@@ -143,7 +147,11 @@ window.onload = function () {
                                 mosques.push(entity);
                                 break;
                             case "Road":
+<<<<<<< HEAD
                                 entity = new Road(this.game, x, y, assetName, tileType, i, j);
+=======
+                                entity = new Road(this.game, x, y, assetName, j, i);
+>>>>>>> 742fac3d9b6f5bb539d4e84e4b634af7b11ec972
                                 roads.push(entity);
                                 break;
                         }
@@ -182,6 +190,12 @@ window.onload = function () {
             agents[i].update();
         }
 
+    }
+
+    function updateCounters() {
+        this.game.emittedAgentsText.setText(String(this.game.levelState.emittedAgents));
+        this.game.convertedAgentsText.setText(String(this.game.levelState.convertedAgents));   
+        this.game.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
     }
 
     function getEntityFromTile(type, row, col) {
