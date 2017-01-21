@@ -35,7 +35,10 @@ window.onload = function () {
     });
     var gameContext = this;
     this.game.getEntityFromTile = getEntityFromTile;
+    
     this.game.waitingToStart = true;
+    this.game.gameStarted = false;
+    this.game.gameEnded = false;
 
     this.game.levelState = {
         emittedAgents: 0,
@@ -58,8 +61,7 @@ window.onload = function () {
         }
     }
 
-    checkIfGameEnded: fucntion()
-    {
+    function checkIfGameEnded() {
         var totalAgentNumber = gameLevelParams.totalAgentNumber;
         var convertTarget = gameLevelParams.convertTarget;
         var lostAgents = this.game.levelState.lostAgents;
@@ -74,11 +76,11 @@ window.onload = function () {
     ;
 
     function endGameAsLose() {
-
+        this.game.gameEnded = true;
     };
 
     function endGameAsWin() {
-
+        this.game.gameEnded = true;
     };
 
     function create() {
