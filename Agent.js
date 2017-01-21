@@ -14,18 +14,17 @@ function GetCurrentStrategy() {
 
 
 
-var Agent = function(game, x, y, resource, speed, directionX, directionY) {
+var Agent = function(game, x, y, speed, directionX, directionY) {
 
-    Phaser.Sprite.call(this, game, x, y, resource);
-    //this.x = x;
-    //this.y = y;
+    ImageEntity.call(this, game, x, y, "agent_front");
     this.speed = speed;  // measured in pixels per tick
     this.directionX = directionX;
     this.directionY = directionY;
-    this.currCell = locToTile(this.x, this.y);
+    this.currCell = Utils.locToTile(this.x, this.y);
 }
 
-Agent.prototype = Object.create(Phaser.Sprite.prototype);
+Agent.prototype = Object.create(ImageEntity.prototype);
+Agent.prototype.constructor = Agent;
 
 Agent.prototype.update = function() {
 
@@ -33,13 +32,13 @@ Agent.prototype.update = function() {
     this.x = this.x + (this.speed * this.directionX);
     this.y = this.y + (this.speed * this.directionY);
 
-    var cellAfterMove = locToTile(this.x, this.y);
+    var cellAfterMove = Utils.locToTile(this.x, this.y);
 
-    cellAfterMove[0] = Math.floor(cellAfterMove[0]);
-    cellAfterMove[1] = Math.floor(cellAfterMove[1]);
+    cellAfterMove.row = Math.floor(cellAfterMove.row);
+    cellAfterMove.col = Math.floor(cellAfterMove.col);
 
     // I we reached a new cell
-    if ((cellAfterMove[0] != this.currCell[0]/1) || (cellAfterMove[1] != this.currCell[1])) {
+    if ((cellAfterMove.row != this.currCell.row) || (cellAfterMove.col != this.currCell.col)) {
         // update cell
         this.currCell = cellAfterMove;
 
