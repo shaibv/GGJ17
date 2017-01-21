@@ -7,11 +7,12 @@ var gameOptions = {
     gameHeight: 600,   // game height, in pixels
     tileSize: 60,     // tile size, in pixels
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
-}
+};
 
 var gameLevelObj = new GameLevel();
 
-var gameLevel = gameLevelObj.getData();
+var gameLevelData = gameLevelObj.getData();
+var gameLevelParams = gameLevelObj.getParams();
 
 var agents = [];
 
@@ -35,7 +36,7 @@ window.onload = function () {
     function create() {
         this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
-        drawBoard(gameLevel);
+        drawBoard(gameLevelData);
         gameLevelObj.completeData();
         bankFactory.init(this.game);
         createAgents();
