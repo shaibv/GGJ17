@@ -6,9 +6,13 @@ Timer = function(game, x, y, resource, totalTime) {
 	this.currentTime = totalTime;
 	
 	var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
-	game.add.text(0, 0, ":", style);
-    var minsText = game.add.text(-25, 0, "02", style);
-    var secText = game.add.text(25, 0, "13", style);
+	var dotdot = game.add.text(0, -12, ":", style);
+    this.minsText = game.add.text(-32, -12, "02", style);
+    this.secText = game.add.text(13, -12, "13", style);
+
+    this.addChild(dotdot);
+    this.addChild(this.minsText);
+    this.addChild(this.secText);
 };
 
 Timer.prototype = Object.create(ImageEntity.prototype);
