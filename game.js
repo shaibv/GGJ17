@@ -177,9 +177,9 @@ window.onload = function () {
      TODO: will move to emitter
      */
     function createAgents() {
-        var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
-        this.game.add.existing(agent);
-        agents.push(agent);
+        // var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
+        // this.game.add.existing(agent);
+        // agents.push(agent);
     }
 
     function updateBuldings() {
