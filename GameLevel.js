@@ -203,11 +203,22 @@ var data = { "height":8,
     "width":16
 }
 
+var levelParams = {
+    agentNumber: 100,   // total emitted agents in level 
+    convertTarget: 80,  // minimum agent number to convert in order to pass the level
+    time: 2             // level time in minutes
+};
+
 GameLevel = function () {
+    return levelParams;
 };
 
 GameLevel.prototype = Object.create(Phaser.Sprite.prototype);
 GameLevel.prototype.constructor = GameLevel;
+
+GameLevel.prototype.getParams = function () {
+    return 
+}
 
 GameLevel.prototype.getData = function () {
 
