@@ -59,6 +59,7 @@ window.onload = function () {
             if (!this.game.gameEnded) {
                 updateBuldings();
                 updateAgents();
+                updateCounters();
                 checkIfGameEnded();
             }
         }
@@ -69,7 +70,7 @@ window.onload = function () {
         var convertTarget = gameLevelParams.convertTarget;
         var lostAgents = this.game.levelState.lostAgents;
         var convertedAgents = this.game.levelState.convertedAgents;
-        if (lostAgents > totalAgentNumber - convertTarget) {
+        if (this.game.timer.isTimeOver() || lostAgents > totalAgentNumber - convertTarget) {
             this.endGameAsLose();
         }
         if (convertedAgents > convertTarget) {
@@ -105,6 +106,11 @@ window.onload = function () {
             seconds: gameLevelParams.time.seconds
         });
         this.game.add.existing(this.game.timer);
+
+        var style = {font: "16pt Arial", fill: "#C0EAFF", align: "center"};
+        this.game.emittedAgentsText = game.add.text(500, 555, String(this.game.levelState.emittedAgents), style);
+        this.game.convertedAgentsText = game.add.text(450, 555, String(this.game.levelState.convertedAgents), style);
+        this.game.lostAgentsText = game.add.text(400, 555, String(this.game.levelState.lostAgents), style);
     }
 
 
@@ -176,6 +182,12 @@ window.onload = function () {
             agents[i].update();
         }
 
+    }
+
+    function updateCounters() {
+        this.emittedAgentsText.setText(String(this.game.levelState.emittedAgents));
+        this.convertedAgentsText.setText(String(this.game.levelState.convertedAgents));   
+        this.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
     }
 
     function getEntityFromTile(type, row, col) {
