@@ -4,7 +4,7 @@
 
 var gameOptions = {
     gameWidth: 960,    // game width, in pixels
-    gameHeight: 600,   // game height, in pixels
+    gameHeight: 480,   // game height, in pixels
     tileSize: 60,     // tile size, in pixels
     colors: [0xff0000, 0x00ff00, 0x0000ff, 0xffff00] // tile colors
 };
@@ -62,7 +62,7 @@ window.onload = function () {
                 updateBuldings();
                 updateAgents();
                 updateCounters();
-                //checkIfGameEnded();
+                checkIfGameEnded();
             }
         }
     }
@@ -83,15 +83,15 @@ window.onload = function () {
 
     function endGameAsLose() {
         this.game.gameEnded = true;
-        this.game.add.sprite(480, 300, 'you_lost');
-        this.music = this.add.audio('end_sound',1,true);
+        this.game.add.sprite(240, 150, 'you_lost');
+        this.music = this.game.add.audio('end_sound',1,true);
         this.music.play('',0,1,true);
     };
 
     function endGameAsWin() {
         this.game.gameEnded = true;
-        this.game.add.sprite(480, 300, 'you_won');
-        this.music = this.add.audio('end_sound',1,true);
+        this.game.add.sprite(240, 150, 'you_won');
+        this.music = this.game.add.audio('end_sound',1,true);
         this.music.play('',0,1,true);
     };
 
@@ -103,8 +103,9 @@ window.onload = function () {
         this.music = this.add.audio('intro_sound',1,true);
         this.music.play('',0,1,true);
 
-        drawBoard(gameLevelData);
+
         CompletedData = gameLevelObj.getCompleteData();
+        drawBoard(CompletedData);
         BankFactory.init(this.game, CompletedData);
         ExitFactory.init(this.game);
         createAgents();
@@ -136,10 +137,12 @@ window.onload = function () {
                 var tileType = row[j];
                 var x = j * gameOptions.tileSize;
                 var y = (i + 1) * gameOptions.tileSize;
-                if (tileType == 0) {
-                    var assetName = 'block';
-                    var sprite = this.game.add.sprite(x, y, assetName);
-                    sprite.anchor.set(0, 1);
+                if (tileType == 0 || tileType ==-1) {
+                    if (tileType ==0){
+                        var assetName = 'block';
+                        var sprite = this.game.add.sprite(x, y, assetName);
+                        sprite.anchor.set(0, 1);
+                    }
                 }
                 else {
                     var assetName = gameLevelObj.getAssetNameById(tileType - 1);
@@ -196,7 +199,7 @@ window.onload = function () {
 
     function updateAgents() {
         for (var i = 0; i < agents.length; i++) {
-            agents[i].update();
+            agents[i].doTick();
         }
 
     }

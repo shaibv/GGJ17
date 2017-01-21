@@ -51,8 +51,18 @@ var Agent = function (game, x, y, speed, directionX, directionY) {
 Agent.prototype = Object.create(ImageEntity.prototype);
 Agent.prototype.constructor = Agent;
 
-Agent.prototype.update = function () {
-    if (this.startedAnimation) {
+
+Agent.prototype.getCell = function () {
+    return this.currCell
+};
+
+
+Agent.prototype.doTick = function (time) {
+        if (this.startedAnimation) {
+        return;
+    }
+
+    if (this.died) {
         return;
     }
 
@@ -64,6 +74,7 @@ Agent.prototype.update = function () {
             this.addChild(game.make.sprite(-17, -28, "aura"));
         }
         this.converted = true;
+        this.walkingTarget = target;
     }
     this.directionX = GetCurrentStrategy(this.x, this.y,target)[0];
     this.directionY = GetCurrentStrategy(this.x, this.y,target)[1];
@@ -71,7 +82,14 @@ Agent.prototype.update = function () {
     this.x = this.x + (this.speed * this.directionX || 0 );
     this.y = this.y + (this.speed * this.directionY || 0);
 
-    var cellAfterMove = Utils.locToTile(this.x, this.y);
+    var cellAfterMove = Utils.locToTile(this.x, this.y, true);
+
+    if (cellAfterMove == null) {
+        this.alpha = 0;
+        this.died = true;
+        this.game.levelState.lostAgents++;
+        return;
+    }
 
     cellAfterMove.row = Math.floor(cellAfterMove.row);
     cellAfterMove.col = Math.floor(cellAfterMove.col);
@@ -85,16 +103,16 @@ Agent.prototype.update = function () {
 
     }
 
-
-
+    if (this.converted && this.walkingTarget && this.getDistance(this.walkingTarget) < 30) {
+        this.game.levelState.convertedAgents++;
+        this.alpha = 0;
+        this.died = true;
+        // this.kill();
+    }
 };
 
-Agent.prototype.getCell = function () {
-    return this.currCell
-};
+Agent.prototype.getDistance = function(otherEntity) {
+    return Math.sqrt(Math.pow(otherEntity.x - this.x, 2) + Math.pow(otherEntity.y - this.y, 2));
+}
 
-
-Agent.prototype.doTick = function (time) {
-    this.update();
-};
 
