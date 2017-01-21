@@ -147,7 +147,7 @@ window.onload = function () {
                                 mosques.push(entity);
                                 break;
                             case "Road":
-                                entity = new Road(this.game, x, y, assetName, tileType, i, j);
+                                entity = new Road(this.game, x, y, tileType, j, i);
                                 roads.push(entity);
                                 break;
                         }
