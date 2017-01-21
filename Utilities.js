@@ -2,17 +2,17 @@
  * Created by adi on 1/20/2017.
  */
 var Utils = {
-    tileToLoc : function(row , col) {
-        if (row < 0)
-            row = 0;
-        if (row > gameOptions.gameWidth / gameOptions.tileSize)
-            row = gameOptions.gameWidth;
+    tileToLoc: function (col, row) {
         if (col < 0)
             col = 0;
-        if (col > gameOptions.gameHeight / gameOptions.tileSize)
-            col = gameOptions.gameHeight;
-        var x = row* gameOptions.tileSize;
-        var y = col* gameOptions.tileSize;
+        if (col > gameOptions.gameWidth / gameOptions.tileSize)
+            col = gameOptions.gameWidth;
+        if (row < 0)
+            row = 0;
+        if (row > gameOptions.gameHeight / gameOptions.tileSize)
+            row = gameOptions.gameHeight;
+        var x = col * gameOptions.tileSize;
+        var y = row * gameOptions.tileSize;
         if (x > gameOptions.gameWidth)
             x = gameOptions.gameWidth;
         if (y > gameOptions.gameHeight)
@@ -20,7 +20,7 @@ var Utils = {
         return {'x': x, 'y': y};
     },
 
-    locToTile : function (x, y) {
+    locToTile: function (x, y) {
         if (x < 0)
             x = 0;
         if (x > gameOptions.gameWidth)
@@ -29,6 +29,6 @@ var Utils = {
             y = 0;
         if (y > gameOptions.gameHeight)
             y = gameOptions.gameHeight;
-        return {'row' : Math.floor( x / gameOptions.tileSize) , 'col': Math.floor( y / gameOptions.tileSize)};
+        return {'col': Math.floor(x / gameOptions.tileSize), 'row': Math.floor(y / gameOptions.tileSize)};
     }
 }
