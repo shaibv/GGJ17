@@ -27,11 +27,15 @@ window.onload = function () {
     //  Although it will work fine with this tutorial, it's almost certainly not the most current version.
     //  Be sure to replace it with an updated version before you start experimenting with adding your own code.
 
-    this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {preload: PreLoader.preload, create: create, update: update});
+    this.game = new Phaser.Game(960, 600, Phaser.AUTO, '', {
+        preload: PreLoader.preload,
+        create: create,
+        update: update
+    });
 
     this.game.waitingToStart = true;
 
-     function update() {
+    function update() {
         if (this.game.waitingToStart) {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
                 this.game.initialDialog.kill();
@@ -40,9 +44,9 @@ window.onload = function () {
             }
         } else {
             updateBuldings();
-            updateAgents(); 
+            updateAgents();
         }
-     }
+    }
 
 
     function create() {
@@ -50,7 +54,7 @@ window.onload = function () {
 
         drawBoard(gameLevelData);
         this.gameData = gameLevelObj.getCompleteData();
-        bankFactory.init(this.game,this.gameData);
+        bankFactory.init(this.game, this.gameData);
         createAgents();
 
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
@@ -67,14 +71,14 @@ window.onload = function () {
             for (var j = 0; j < row.length; j++) {
                 var tileType = row[j];
                 var x = j * gameOptions.tileSize;
-                var y = (i+1) * gameOptions.tileSize;
+                var y = (i + 1) * gameOptions.tileSize;
                 if (tileType == 0) {
                     var assetName = 'block';
                 }
                 else {
-                    var assetName = gameLevelObj.getAssetNameById(tileType-1);
+                    var assetName = gameLevelObj.getAssetNameById(tileType - 1);
                     var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
-                    var entity =null;
+                    var entity = null;
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
                             case "Obsticle":
@@ -96,11 +100,11 @@ window.onload = function () {
                         }
                     }
                     if (entity) {
-                        entity.anchor.set(0,1);
+                        entity.anchor.set(0, 1);
                         this.game.add.existing(entity);
                     } else {
                         var sprite = this.game.add.sprite(x, y, assetName);
-                        sprite.anchor.set(0,1);
+                        sprite.anchor.set(0, 1);
                     }
                 }
             }
@@ -108,9 +112,9 @@ window.onload = function () {
     }
 
     /*
-        TODO: will move to emitter
+     TODO: will move to emitter
      */
-    function createAgents(){
+    function createAgents() {
         var agent = new Agent(this.game, 300 + 30, 10, 2, 0, 1);
         this.game.add.existing(agent);
         agents.push(agent);
@@ -124,12 +128,32 @@ window.onload = function () {
         }
     }
 
-    function updateAgents(){
-        for (var i = 0; i<agents.length; i++){
+    function updateAgents() {
+        for (var i = 0; i < agents.length; i++) {
             agents[i].update();
         }
 
     }
-    
+
+    function getEntityFromTile(type, row, col) {
+        var collection = [];
+        if (type == 'road') {
+            collection = this.roads;
+        }
+        if (type == 'mosque') {
+            collection = this.mosques;
+        }
+        if (type == 'agent') {
+            collection = this.agents;
+        }
+        for (var i = 0; i < collection.length; i++) {
+            var entity = collection[i];
+            if (entity.row == row && entity.col == col) {
+                return entity;
+            }
+        }
+        return null;
+    }
+
 
 };
