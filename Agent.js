@@ -92,19 +92,6 @@ Agent.prototype.doTick = function (time) {
         this.converted = true;
         this.walkingTarget = target;
     }
-
-
-
-    if (this.updateCounter % 17 == 0){
-
-    }
-    else {
-        //console.log("zerrrro: "+dirX + " "+dirY);
-    }
-
-
-
-
     // Calc the new position
 
 
