@@ -185,9 +185,9 @@ window.onload = function () {
     }
 
     function updateCounters() {
-        this.emittedAgentsText.setText(String(this.game.levelState.emittedAgents));
-        this.convertedAgentsText.setText(String(this.game.levelState.convertedAgents));   
-        this.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
+        this.game.emittedAgentsText.setText(String(this.game.levelState.emittedAgents));
+        this.game.convertedAgentsText.setText(String(this.game.levelState.convertedAgents));   
+        this.game.lostAgentsText.setText(String(this.game.levelState.lostAgents));   
     }
 
     function getEntityFromTile(type, row, col) {
