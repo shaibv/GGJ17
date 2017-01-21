@@ -284,4 +284,10 @@ GameLevel.prototype.getAssetsToLoad = function () {
     return assetsToLoad;
 };
 
+GameLevel.prototype.mapTileToType = function (tileType) {
+    var rawData = data.tilesets[0].tiles[tileType].image;
+    rawData = rawData.substring(0, rawData.lastIndexOf('.'));
+   return rawData.substring(rawData.lastIndexOf('/') + 1);
+}
+
 
