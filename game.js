@@ -52,12 +52,15 @@ window.onload = function () {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
                 this.game.initialDialog.kill();
                 this.game.waitingToStart = false;
+                this.game.gameStarted = true;
                 this.game.timer.start();
             }
         } else {
-            updateBuldings();
-            updateAgents();
-            this.checkIfGameEnded();
+            if (!this.game.gameEnded) {
+                updateBuldings();
+                updateAgents();
+                checkIfGameEnded();
+            }
         }
     }
 
