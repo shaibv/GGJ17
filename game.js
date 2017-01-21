@@ -103,7 +103,7 @@ window.onload = function () {
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
         this.game.add.existing(this.game.initialDialog);
 
-        this.game.timer = new Timer(this.game, 870, 570, {
+        this.game.timer = new Timer(this.game, 892, 578, {
             minutes: gameLevelParams.time.minutes,
             seconds: gameLevelParams.time.seconds
         });
