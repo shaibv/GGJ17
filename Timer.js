@@ -47,7 +47,7 @@ Timer.prototype.start = function() {
 				}
 			}
 		}
-		this.update();
+		timer.update();
 
 	}, 1000);
 };
