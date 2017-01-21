@@ -25,6 +25,9 @@ var PreLoader = {
         game.load.audio('mosque_sound1', ['assets/Moazin.mp3']);
         game.load.audio('intro_sound', ['assets/intro_sound.mp3']);
         game.load.audio('end_sound', ['assets/endscreen.mp3']);
+        game.load.audio('drop', ['assets/drop.mp3']);
+        game.load.audio('giggle', ['assets/giggle1.mp3']);
+        game.load.audio('holy_sound', ['assets/holy_sound.mp3']);
 
         var assetsToLoad = gameLevelObj.getAssetsToLoad();
         for (var i=0; i<assetsToLoad.length; i++){

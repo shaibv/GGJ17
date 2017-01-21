@@ -88,6 +88,8 @@ Agent.prototype.doTick = function (time) {
         this.alpha = 0;
         this.died = true;
         this.game.levelState.lostAgents++;
+        var sound = game.add.audio('giggle');
+        sound.play();
         return;
     }
 
@@ -106,6 +108,8 @@ Agent.prototype.doTick = function (time) {
     if (this.converted && this.walkingTarget && this.getDistance(this.walkingTarget) < 30) {
         this.game.levelState.convertedAgents++;
         this.alpha = 0;
+        var sound = game.add.audio('holy_sound');
+        sound.play();
         this.died = true;
         // this.kill();
     }
