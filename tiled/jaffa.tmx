@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="16" height="8" tilewidth="60" tileheight="60" nextobjectid="1">
- <tileset firstgid="1" name="buildings" tilewidth="181" tileheight="181" tilecount="18" columns="0">
+ <tileset firstgid="1" name="buildings" tilewidth="181" tileheight="181" tilecount="19" columns="0">
   <tile id="3">
    <properties>
     <property name="height" value="1"/>
@@ -87,17 +87,20 @@
   <tile id="20">
    <image width="60" height="60" source="../assets/road_north.png"/>
   </tile>
+  <tile id="21">
+   <image width="60" height="60" source="../assets/road_corner_east_north.png"/>
+  </tile>
  </tileset>
  <layer name="Tile Layer 1" width="16" height="8">
   <data encoding="csv">
-0,0,0,0,0,21,0,0,0,0,0,0,0,0,0,0,
-0,4,0,0,0,21,0,8,0,0,0,4,4,0,0,10,
-0,0,4,4,4,21,0,0,0,0,0,4,4,0,0,0,
-0,0,0,4,0,21,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,21,0,0,7,0,0,8,0,0,0,0,
-0,0,0,0,0,21,4,4,0,0,0,0,0,0,0,5,
-0,11,0,0,0,21,4,4,0,0,0,0,0,0,0,0,
-0,15,15,15,15,18,15,15,15,9,0,0,0,0,0,0
+0,0,0,0,12,15,15,15,15,17,8,0,0,21,0,0,
+0,0,0,4,21,0,0,0,0,21,0,0,0,21,0,0,
+0,0,0,0,14,0,0,0,0,21,0,0,0,21,0,4,
+0,0,0,4,12,15,15,13,0,21,0,0,0,21,12,14,
+0,0,10,21,21,0,0,20,15,18,15,15,15,18,18,15,
+0,0,0,20,14,0,0,21,0,0,4,0,0,0,0,0,
+0,0,0,21,0,0,0,21,0,0,21,0,0,9,0,0,
+15,15,15,14,0,11,0,22,15,15,14,0,0,0,0,0
 </data>
  </layer>
 </map>

@@ -19,6 +19,7 @@ var agents = [];
 var obsticles = [];
 var houses = [];
 var mosques = [];
+var roads = [];
 
 window.onload = function () {
 
@@ -35,6 +36,7 @@ window.onload = function () {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
                 this.game.initialDialog.kill();
                 this.game.waitingToStart = false;
+                this.game.timer.start();
             }
         } else {
             updateBuldings();
@@ -54,7 +56,7 @@ window.onload = function () {
         this.game.initialDialog = new ImageEntity(this.game, 480, 300, "initial_dialog");
         this.game.add.existing(this.game.initialDialog);
 
-        this.game.timer = new Timer(this.game, 870, 570, 2000);
+        this.game.timer = new Timer(this.game, 870, 570, {minutes: 2, seconds: 59});
         this.game.add.existing(this.game.timer);
     }
 
@@ -70,9 +72,8 @@ window.onload = function () {
                     var assetName = 'block';
                 }
                 else {
-                    tileType = tileType -1;
-                    var assetName = gameLevelObj.getAssetNameById(tileType);
-                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType+1);
+                    var assetName = gameLevelObj.getAssetNameById(tileType-1);
+                    var tileObject = gameLevelObj.getObjectTypeByTileType(tileType);
                     var entity =null;
                     if (tileObject) { //TODO: fix this
                         switch (tileObject) {
@@ -87,6 +88,10 @@ window.onload = function () {
                             case "Mosque":
                                 entity = new Mosque(this.game, x, y, assetName);
                                 mosques.push(entity);
+                                break;
+                            case "Road":
+                                entity = new Road(this.game, x, y, assetName, tileType);
+                                roads.push(entity);
                                 break;
                         }
                     }
