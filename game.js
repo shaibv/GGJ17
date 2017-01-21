@@ -72,10 +72,10 @@ window.onload = function () {
         var lostAgents = this.game.levelState.lostAgents;
         var convertedAgents = this.game.levelState.convertedAgents;
         if (this.game.timer.isTimeOver() || lostAgents > totalAgentNumber - convertTarget) {
-            this.endGameAsLose();
+            endGameAsLose();
         }
         if (convertedAgents > convertTarget) {
-            this.endGameAsWin();
+            endGameAsWin();
         }
     }
     ;
@@ -130,6 +130,8 @@ window.onload = function () {
                 var y = (i + 1) * gameOptions.tileSize;
                 if (tileType == 0) {
                     var assetName = 'block';
+                    var sprite = this.game.add.sprite(x, y, assetName);
+                    sprite.anchor.set(0, 1);
                 }
                 else {
                     var assetName = gameLevelObj.getAssetNameById(tileType - 1);
