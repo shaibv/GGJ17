@@ -76,6 +76,14 @@ window.onload = function () {
 
         bankFactoryContext.kill();
         bankFactoryContext.initBanks(this.game, CompletedData);
+
+        if (this.game.endSprite) {
+            this.game.endSprite.alpha = 0;
+            this.game.endSprite.destroy();
+        }
+        if (this.game.endMusic) {
+            this.game.endMusic.stop();
+        }
         this.game.gameEnded = false;
 
     }
@@ -115,16 +123,16 @@ window.onload = function () {
 
     function endGameAsLose() {
         this.game.gameEnded = true;
-        this.game.add.sprite(240, 150, 'you_lost');
-        this.music = this.game.add.audio('end_sound',1,true);
-        this.music.play('',0,1,true);
+        this.game.endSprite = this.game.add.sprite(240, 150, 'you_lost');
+        this.game.endMusic = this.game.add.audio('end_sound',1,true);
+        this.game.endMusic.play('',0,1,true);
     };
 
     function endGameAsWin() {
         this.game.gameEnded = true;
-        this.game.add.sprite(240, 150, 'you_won');
-        this.music = this.game.add.audio('end_sound',1,true);
-        this.music.play('',0,1,true);
+        this.game.endSprite = this.game.add.sprite(240, 150, 'you_won');
+        this.game.endMusic = this.game.add.audio('end_sound',1,true);
+        this.game.endMusic.play('',0,1,true);
     };
 
     function create() {
