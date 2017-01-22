@@ -70,6 +70,10 @@ window.onload = function () {
             agents[i].died = true;
             agents[i].destroy();
         }
+
+        agents = [];
+        mosques = [];
+
         bankFactoryContext.kill();
         bankFactoryContext.initBanks(this.game, CompletedData);
         this.game.gameEnded = false;
