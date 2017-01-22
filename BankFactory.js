@@ -19,7 +19,7 @@ function initBanks(game, gameBoard) {
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
     initDraggable(10, 500, 'button_big', 1);
-    initDraggable(100, 500, 'button_small', 2);
+    initDraggable(100, 500, 'button_small', 1);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
