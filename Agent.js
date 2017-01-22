@@ -9,7 +9,6 @@
 
 
 var Agent = function (game, x, y, speed, directionX, directionY) {
-
     ImageEntity.call(this, game, x, y, "agent_front");
     this.speed = speed;  // measured in pixels per tick
     this.directionX = directionX;
@@ -138,6 +137,19 @@ Agent.prototype.doTick = function (time) {
 
     if (this.converted){
         this.speed = 0.3;
+    }
+
+    if (this.directionX == 1) {
+        this.loadTexture('agent_right', 0);
+    }
+    if (this.directionX == -1) {
+        this.loadTexture('agent_left', 0);
+    }
+    if (this.directionY == 1) {
+        this.loadTexture('agent_front', 0);
+    }
+    if (this.directionY == -1){
+        this.loadTexture('agent_back', 0);
     }
 
     this.x = this.x + (this.speed * this.directionX);
