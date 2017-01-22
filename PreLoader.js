@@ -14,8 +14,8 @@ var PreLoader = {
         game.load.image('mosque', 'assets/mosque.png');
         game.load.image('button_big', 'assets/button_big.png');
         game.load.image('button_small', 'assets/button_small.png');
-        // game.load.image('synagogue', 'assets/synagogue.png');
-        // game.load.image('church', 'assets/church.png');
+        game.load.image('synagogue', 'assets/synagogue.png');
+        game.load.image('church', 'assets/church.png');
         game.load.image('block', 'assets/black_tile.png');
         game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
