@@ -8,6 +8,9 @@ Mosque.prototype = Object.create(Building.prototype);
 Mosque.prototype.constructor = Mosque;
 
 Building.prototype.doTick = function(time) {
+    if (this.died) {
+        return;
+    }
     var time = new Date();
     var delta = 1.6;
     if ((time/1000 - this.lastWavesSentTime / 1000) > delta) {
@@ -17,6 +20,12 @@ Building.prototype.doTick = function(time) {
 };
 
 Mosque.prototype.emit = function() {
+    if (this.died) {
+        return;
+    }
+    if (!this.game) {
+        return;
+    }
 	var smallWave = this.game.make.sprite(this.width/2, -this.height/2, "mosque_wave_small");
 	var bigWave = this.game.make.sprite(this.width/2, -this.height/2, "mosque_wave_big");
 	bigWave.anchor.setTo(0.5, 0.5);

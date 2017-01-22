@@ -4,6 +4,7 @@ var PreLoader = {
         var game = window.game;
 
         game.load.image('background', 'assets/background.png');
+        game.load.image('reset', 'assets/reset.png');
         game.load.image('aura', 'assets/person_aura.png');
 
         game.load.image('initial_dialog', 'assets/initial_dialog.png');

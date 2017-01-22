@@ -46,9 +46,37 @@ window.onload = function () {
         convertedAgents: 0
     };
 
+    function resetGame() {
+        if (!this.game.gameStarted) {
+            return;
+        }
+        this.game.gameEnded = true;
+        this.game.timer.currentTime = {
+            minutes: gameLevelParams.time.minutes,
+            seconds: gameLevelParams.time.seconds
+        }
+        this.game.levelState = {
+            emittedAgents: 0,
+            lostAgents: 0,
+            convertedAgents: 0
+        };
+        var buildings = mosques;
+        for (var i = 0; i < buildings.length; i++) {
+            var building = buildings[i];
+            building.died = true;
+            building.destroy();
+        }
+        for (var i = 0; i < agents.length; i++) {
+            agents[i].died = true;
+            agents[i].destroy();
+        }
+        bankFactoryContext.kill();
+        bankFactoryContext.initBanks(this.game, CompletedData);
+        this.game.gameEnded = false;
+
+    }
 
     function update() {
-        console.log('update');
         if (this.game.waitingToStart) {
             if (this.game.input.keyboard.isDown(Phaser.Keyboard.SPACEBAR)) {
                 this.music.stop();
@@ -100,6 +128,7 @@ window.onload = function () {
 
         this.game.add.sprite(0, 0, 'background');
 
+
         this.music = this.add.audio('intro_sound',1,true);
         this.music.play('',0,1,true);
 
@@ -127,6 +156,8 @@ window.onload = function () {
         this.game.emittedAgentsText = game.add.text(470, 540, String(this.game.levelState.emittedAgents), style);
         this.game.convertedAgentsText = game.add.text(370, 540, String(this.game.levelState.convertedAgents), style);
         this.game.lostAgentsText = game.add.text(270, 540, String(this.game.levelState.lostAgents), style);
+
+        game.add.button(game.world.centerX + 385, 470, 'reset', resetGame, this, 2, 1, 0);
     }
 
 

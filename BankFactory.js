@@ -8,6 +8,12 @@ var BankFactory = {
 
 }
 
+function kill() {
+    for(var draggable in draggables) {
+         draggables[draggable].destroy();
+    }
+}
+
 function initBanks(game, gameBoard) {
     var gameLevel = gameBoard;
     this.game = game;
