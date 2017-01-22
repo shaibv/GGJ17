@@ -12,8 +12,10 @@ var PreLoader = {
         game.load.image('you_lost', 'assets/you_lost.png');
         
         game.load.image('mosque', 'assets/mosque.png');
-        game.load.image('synagogue', 'assets/synagogue.png');
-        game.load.image('church', 'assets/church.png');
+        game.load.image('button_big', 'assets/button_big.png');
+        game.load.image('button_small', 'assets/button_small.png');
+        // game.load.image('synagogue', 'assets/synagogue.png');
+        // game.load.image('church', 'assets/church.png');
         game.load.image('block', 'assets/black_tile.png');
         game.load.image('mosque_wave_small', 'assets/mosque_wave_small.png');
         game.load.image('mosque_wave_big', 'assets/mosque_wave_big.png');
@@ -26,6 +28,7 @@ var PreLoader = {
         game.load.audio('intro_sound', ['assets/intro_sound.mp3']);
         game.load.audio('end_sound', ['assets/endscreen.mp3']);
         game.load.audio('drop', ['assets/drop.mp3']);
+        game.load.audio('click', ['assets/click.mp3']);
         game.load.audio('giggle', ['assets/giggle1.mp3']);
         game.load.audio('holy_sound', ['assets/holy_sound.mp3']);
 

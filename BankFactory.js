@@ -12,14 +12,18 @@ function initBanks(game, gameBoard) {
     var gameLevel = gameBoard;
     this.game = game;
     this.game.physics.startSystem(Phaser.Physics.ARCADE);
-    initDraggable(0, 480, 'mosque2', 1);
-    initDraggable(140, 480, 'mosque1', 2);
+    initDraggable(10, 500, 'button_big', 1);
+    initDraggable(100, 500, 'button_small', 2);
 
     function dragStart(currentSprite, type) {
         if (draggableBankCounter[type]) {
             var sound = game.add.audio('drop');
             sound.play();
+            var res = type == "button_big" ? "mosque2" : "mosque1";
+            currentSprite.loadTexture(res, 0);
             initDraggable(currentSprite.x, currentSprite.y, type, draggableBankCounter[type]);
+            currentSprite.bringToTop();
+            currentSprite.anchor.setTo()
         } else {
 
         }
@@ -57,6 +61,8 @@ function initBanks(game, gameBoard) {
             draggableBankCounter[type]--;
             if(!draggableBankCounter[type]){
                 draggables[type].alpha = 0.5;
+                draggables[type].inputEnabled = false;
+                draggables[type].input.disableDrag();
             }
         } else {
 
